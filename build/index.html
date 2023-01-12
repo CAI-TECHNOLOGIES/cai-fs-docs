@@ -1,0 +1,484 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="ARCHITECTURE" href="architecture.html" />
+
+    <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
+        <title>DSCW Platform Technical Overview &amp; User Guide</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  
+  <span class="sidebar-brand-text"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">ARCHITECTURE</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="project.html">AI PLATFORM USER GUIDE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="pipelines.html"><strong>Pipelines</strong></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="developer.html"><strong>Developer</strong></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dataLake.html"><strong>Data Lake Explorer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbExplorer.html"><strong>Database Explorer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets.html"><strong>Datasets</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="model%26Exp.html"><strong>Models and Experiments</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks.html"><strong>Notebooks</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoEDA.html"><strong>Auto EDA (Exploratory Data Analysis)</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiCollection.html"><strong>API Collections (Auto API Builder)</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="projectServices.html"><strong>Project Services</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="monitor.html"><strong>Monitor</strong></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="centralisedLogs.html"><strong>Centralised Logs</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="observability.html"><strong>Observability</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="metricDash.html"><strong>Metrics Dashboard</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributedTrace.html"><strong>Distributed Trace</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html"><strong>Configurations</strong></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">appendix and references</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipelines Developer Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Additional Admin Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQs</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <blockquote>
+<div><p>One-Stop Platform for composable, automatic, and scalable ML systems,
+including distributed training, resource-adaptive scheduling,
+hyperparameter tuning, compositional model construction, and much more.</p>
+</div></blockquote>
+<section id="dscw-platform">
+<span id="section-1"></span><h1>DSCW Platform<a class="headerlink" href="#dscw-platform" title="Permalink to this heading">#</a></h1>
+<a class="reference internal image-reference" href="_images/image74.png"><img alt="_images/image74.png" src="_images/image74.png" style="width: 5.86979in; height: 2.91608in;" /></a>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>The platform is divided into various components to keep it modular and
+enables easy scaling for deployments. It also focuses on managing high
+loads without much change and affecting performance.</p>
+<p>Let us look into some of the main highlights the platform has to offer.</p>
+<ul>
+<li><p>Support for <strong>Global Project</strong> across pipelines, notebooks, EDA, datasets etc.</p></li>
+<li><div class="line-block">
+<div class="line">Users can be part of multiple projects having <strong>project specific pipelines, project specific datasets, project specific notebooks, project specific auto EDA</strong> etc. This will help users to segregate their work and work with other team members on specific projects making it a seamless and hassle-free experience.</div>
+</div>
+</li>
+<li><p><strong>Orchestrates Distributed Workflows and Automates ML Pipelines</strong>.</p>
+<ul class="simple">
+<li><p>Brings complex integrations of distributed workflows using simple low-code configurations.</p></li>
+</ul>
+</li>
+<li><p>Transparent and straightforward operations so that the team can focus only on models, code, and data.</p></li>
+<li><p><strong>Auto Exploratory Data Analysis</strong>: Saves 60% of your time from any ML project by automating many steps, like identifying data issues, missing values, outliers, imbalanced datasets, and many more. It also provides bar charts, heatmaps, and other such visualizations for a detailed understanding of the dataset.</p></li>
+<li><p>Workbench and notebooks for data scientists, data engineers, data analysts, administrators, etc.</p></li>
+<li><p>Seamlessly scale pipelines from local development to batch execution and online serving in production</p></li>
+<li><p>An agnostic architecture layer that improves operational efficiency and namespace segregation, provides differentiated auto-scaling, and thus reduces compute costs when deploying workloads.</p></li>
+<li><p><strong>Reliable and fully manageable</strong>: every workflow and its tasks are isolated, enabling different teams to collaborate without having to worry about affecting each other’s work.</p></li>
+<li><p>Consistent Identities and Policies across different identity systems from one place by using an abstraction layer driven by a simple declarative API.</p></li>
+<li><p><strong>Security and Confidentiality</strong>: As a pure-play cloud offering, security, confidentiality, availability, and privacy of data are fundamental to the DSCW Platform. Not only do we leverage the inherent capabilities of public clouds in these four areas, but we provide additional capacities like strong compliance, strong encryption, etc.</p></li>
+<li><p><strong>Telemetry out-of-box</strong>: Integrations across all platform components for solutions hosted by the platform. Prebuilt consoles and 3rd party integration hooks for complete Observability, Traceability, Audit, Metrics, Logging, and Error exploration.</p></li>
+</ul>
+</section>
+<section id="why">
+<h2>Why?<a class="headerlink" href="#why" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cloud-native, Simple and Secure</p></li>
+<li><p>Less Administration, More Automation</p></li>
+<li><p>Secure Data Exploration and Ad-hoc Data Analytics</p></li>
+<li><p>Building scalable data pipelines for Machine Learning</p></li>
+<li><p>Role-based collaboration of data, workflows, algorithms, and models across teams.</p></li>
+<li><p>Build and drive your entire data science program under one roof.</p></li>
+<li><p>Accelerate your AI strategy with Automatic ML.</p></li>
+<li><p>Keep your existing tools and frameworks, and easily integrate all major AI tools in the DSCW Platform.</p></li>
+<li><p>Prevent cloud-host lock-in: Seamlessly migrate data, solutions &amp; apps across any cloud provider or on-prem</p></li>
+<li><p><strong>DSCW Workbench</strong>: Empower you to build and deploy portable, scalable machine learning workflows based on Docker containers. It consists of a user interface to manage jobs, an engine to schedule multi-step ML workflows, an SDK to define and manipulate pipelines, and notebooks to interact with the system via SDK.</p></li>
+<li><p><strong>DSCW Serving</strong>: Enables serverless inferencing on Kubernetes. It also provides high abstraction interfaces for ML frameworks like PyTorch, TensorFlow, scikit-learn, etc.</p></li>
+<li><p><strong>Multi-tenancy</strong>: Simplifies user operations to allow users to view and edit only the DSCW components and model artifacts in their configuration. Key concepts under this multi-user isolation include authentication, authorization, administrator, user, and profile.</p></li>
+<li><p><strong>Training Operators:</strong> This enables users to train ML models through operators. For instance, it provides Tensorflow training (TFJob) that runs TensorFlow model training on Kubernetes, PyTorchJob for Pytorch model training, etc.</p></li>
+<li><p><strong>Notebooks:</strong> Kubeflow deployment provides services for managing and spawning AI notebooks. Each DSCW deployment can include multiple notebook servers and each notebook server can include multiple notebooks.</p></li>
+<li><p><strong>Role Based Access Control</strong> : Update permissions, add new users as you grow, and give everyone the exact permissions they need.</p></li>
+</ul>
+</section>
+<section id="features-of-the-platform">
+<span id="section-2"></span><h2>Features of the Platform<a class="headerlink" href="#features-of-the-platform" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Unified interface for AI Projects development and deployment across environments.</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Project specific workspaces to data/ML pipelines, track experiments and notebooks, complete versioning/serving of dataset &amp; trained models, create and deploy APIs, server configurations as well as compute/memory resource allocation.</p></li>
+<li><p>User Management: Attribute-Based Access Control for individual users and teams to restrict access to the above workspaces, data, and fields.</p></li>
+<li><p>Role-Based Access Control (RBAC) [for Kubernetes Admins, Solution Integrators, Release Managers, Workspace Custodians, Solution Builders, Data Engineers, Data Scientists, Data Custodians, Code Custodians, and Business Owners], allowing configuration of varying levels of access across all Users within the Workspace.</p></li>
+<li><p>Complete Kubernetes native platform to allow for autoscale. as well as support project/user specific compute/memory limits.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p><strong>Creating and Scheduling Data, ML &amp; DeepLearning Pipelines</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Build data processing pipelines and use Pipelines to construct and visualize the workflow.</p></li>
+<li><p>Low-code GUI to author, schedule, and monitor these workflows.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p><strong>Orchestrating Resources and Processing the data</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Automate deployment, scale, and manage containerized applications. Utilize in-memory caching and optimize query execution for fast queries against data of any size.</p></li>
+<li><p>Requires user-specific minimal configuration for setting it up.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p><strong>DSCW Notebook Server</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Notebook Server Hub comprises the dashboard, admin control module, vault connector with proxy API, and the proxy public that interacts with each user’s NB pods in the KubeSpawner present in the server.</p></li>
+<li><p>Authenticators (Azure AD Connector &amp; Base Auth) are used in the notebook server hub.</p></li>
+<li><p>As a part of common utilities, it has code snippets (drag and drop) and data connectors (combine various sources of data into one integrated space).</p></li>
+<li><p>Various kernels like TensorFlow kernel, PyTorch kernel, and python ML kernel allow running the respective Kubernetes cluster where the jobs can be scheduled and run.</p></li>
+<li><p>A basic version control system with git integration is provided in DSCW Notebooks which allows users to keep their projects updated with the team.</p></li>
+</ul>
+<ol class="arabic simple" start="5">
+<li><p><strong>DSCW Workbench</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Workbench is a platform to programmatically author, schedule, and monitor workflows. When workflows are defined as code, they become more maintainable, version-able, testable, and collaborative.</p></li>
+<li><p>Developers, data scientists, or data engineers access Workbench UI (running in K8s pod) through the Ingress Istio Gateway.</p></li>
+<li><p>WFO server (running in K8s pod) comprises the scheduler and Celery-Kubernetes executors. These executors can run tasks through the celery queue or K8 queue in the backend.</p></li>
+</ul>
+<ol class="arabic simple" start="6">
+<li><p><strong>Centralized Exception Manager, Metrics and its Visualization</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Collect rich metrics and transform these metrics into meaningful visualizations which are supported by most data source types.</p></li>
+<li><p>Hosted within your infrastructure, which takes care of data privacy concerns.</p></li>
+</ul>
+<ol class="arabic simple" start="7">
+<li><p><strong>Application and Service Monitor, Centralized Observability Console</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Understand the structure and health of your service mesh by monitoring traffic flow to infer the topology and report errors for smooth functioning.</p></li>
+<li><p>Trace transactions between distributed services. Monitor and troubleshoot complex microservices environments.</p></li>
+</ul>
+<ol class="arabic simple" start="8">
+<li><p><strong>Telemetry</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Inbuilt logging, auditing, and error handling.</p></li>
+<li><p>Auto-enabled for all pipelines and applications hosted on the platform.</p></li>
+<li><p>Hooks to extend the traceability data to all major 3rd party providers to auto-integrate into the organization’s existing choice of telemetry infrastructure.</p></li>
+</ul>
+<ol class="arabic simple" start="9">
+<li><p><strong>Key storage and management service with enterprise-grade security</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Centrally store, access, and deploy secrets across applications, systems, and infrastructure. Using a standardized workflow for distribution and lifecycle management of cryptographic keys across various KMS providers. (multi-cloud support available)</p></li>
+<li><p>Not only have control of the data, but also replicate it in other regions, other data centers, and other cloud providers.</p></li>
+<li><p>Locally run secret storage, encryption, and other such small use cases without setup overhead, leading to higher development productivity.</p></li>
+</ul>
+<ol class="arabic simple" start="10">
+<li><p><strong>Metadata management and governance capabilities for organizations</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Build a catalog of data assets, classify and govern. Data lineage while leveraging collaboration capabilities around these data assets for data scientists, analysts, and the data governance team.</p></li>
+</ul>
+<ol class="arabic simple" start="11">
+<li><p><strong>KMS Encrypted Data Warehouse</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Can retrieve data from anywhere and overcome issues such as capacity planning and allocation, legacy infrastructure, and siloed data storage that are preventing organizations from realizing the full value of their data.</p></li>
+</ul>
+<ol class="arabic simple" start="12">
+<li><p><strong>Manage the ML lifecycle</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Includes experimentation, reproducibility, deployment, and a central model registry</p></li>
+<li><p>Organizations can share projects, models, and results using MLflow.</p></li>
+<li><p>Moreover, engineering teams can easily move workflows from R&amp;D to staging to production.</p></li>
+</ul>
+<ol class="arabic simple" start="13">
+<li><p><strong>Multi-cloud continuous delivery platform</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Release software changes with high velocity and confidence.</p></li>
+</ul>
+<ol class="arabic simple" start="14">
+<li><p><strong>Interactive Query Service</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Fast, consistent queries at high concurrency. ​​</p></li>
+<li><p>Unlock new types of queries and workflows for clickstream, risk/fraud, APM, supply chain, network telemetry, digital marketing, and many other types of data.</p></li>
+</ul>
+<ol class="arabic simple" start="15">
+<li><p><strong>Analytics and Visualization</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>In just a few clicks, combine data sources, add filters, and drill down into specific information.</p></li>
+<li><p>Sharing a dashboard requires no programming and building them: even non-technical users can create interactive, real-time visualizations in minutes for huge chunks of data.</p></li>
+<li><p>Supported on-prem, and on all major cloud platforms.</p></li>
+</ul>
+<ol class="arabic simple" start="16">
+<li><p><strong>Real-time data access.</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Real-time data access with asynchronous messaging, supporting multiple messaging protocols, with Kafka and Spark Streaming for data consumption and real-time interfacing and serving APIs.</p></li>
+<li><p>Supports a wide range of messaging sequences such as one-to-one, one-to-multiple, multiple-to-multiple locations, complicated routing, and remote procedure calls.</p></li>
+</ul>
+<ol class="arabic simple" start="17">
+<li><p>Store, Share and download data securely with automatic encryption and access controls.</p></li>
+<li><p>Work on Templated Data Transformations, Machine Learning, and Deep Learning employing Reusable Components Registry (Spark ML, Tensorflow, Pytorch)</p></li>
+<li><p>Capable of ingesting, buffering, and processing streaming data in real time, so you can derive insights in seconds or minutes instead of hours or days.</p></li>
+<li><p>Fast and standardized API design, built for teams to drive consistency and discipline across the API development workflow.</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="architecture.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">ARCHITECTURE</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023
+            </div>
+          
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">DSCW Platform</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#why">Why?</a></li>
+<li><a class="reference internal" href="#features-of-the-platform">Features of the Platform</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>

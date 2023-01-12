@@ -1,0 +1,465 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Pipelines Developer Reference" href="pipeline.html" /><link rel="prev" title="Distributed Trace" href="distributedTrace.html" />
+
+    <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
+        <title>Configurations - DSCW Platform Technical Overview &amp; User Guide</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">ARCHITECTURE</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="project.html">AI PLATFORM USER GUIDE</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pipelines.html"><strong>Pipelines</strong></a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="developer.html"><strong>Developer</strong></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="dataLake.html"><strong>Data Lake Explorer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbExplorer.html"><strong>Database Explorer</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="datasets.html"><strong>Datasets</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="model%26Exp.html"><strong>Models and Experiments</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks.html"><strong>Notebooks</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoEDA.html"><strong>Auto EDA (Exploratory Data Analysis)</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiCollection.html"><strong>API Collections (Auto API Builder)</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="projectServices.html"><strong>Project Services</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="monitor.html"><strong>Monitor</strong></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="centralisedLogs.html"><strong>Centralised Logs</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="observability.html"><strong>Observability</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="metricDash.html"><strong>Metrics Dashboard</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributedTrace.html"><strong>Distributed Trace</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#"><strong>Configurations</strong></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">appendix and references</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipelines Developer Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="admin.html">Additional Admin Features</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQs</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="configurations">
+<h1><strong>Configurations</strong><a class="headerlink" href="#configurations" title="Permalink to this heading">#</a></h1>
+<section id="cluster-configurations">
+<h2><strong>Cluster Configurations</strong><a class="headerlink" href="#cluster-configurations" title="Permalink to this heading">#</a></h2>
+<a class="reference internal image-reference" href="_images/image45.png"><img alt="_images/image45.png" src="_images/image45.png" style="width: 5.59896in; height: 1.3585in;" /></a>
+<p>This tab comprises all the configurations that a user can perform on
+their cluster. Only users with specific roles have permission to access
+this tab (as of now, only Admin).</p>
+<p>For example, spark configuration is used to configure the spark tasks
+and is responsible for managing that particular service.</p>
+<p>In the pipeline code specify what config group to use and the pipeline
+runs using those particular configurations saved in the configuration
+group. If there are multiple sets of config groups, specify in Pipeline
+which particular config-set be used.</p>
+<p>Set ‘config_group’ = &lt;YOUR_CONFIG_GROUP_NAME&gt; in the code and then run
+the Pipeline.</p>
+<p>Either add custom config groups or use default groups defined in the
+platform as shown in the above image.</p>
+<p>An example to set configurations in a custom config group :</p>
+<section id="data-lake-configurations">
+<h3><strong>Data Lake Configurations</strong><a class="headerlink" href="#data-lake-configurations" title="Permalink to this heading">#</a></h3>
+<p><strong>S3 and Hadoop Configuration</strong> : Configurations files required for
+runtime environment settings of S3 or Hadoop cluster can be easily
+configured with the help of Data Lake Configuration Groups through
+orchestrator using the below steps:</p>
+<p>On the Spark Config Group page, select the Data Lake Configuration link
+of the respective group. You will be redirected to a page containing
+configuration files for that group.</p>
+<a class="reference internal image-reference" href="_images/image72.png"><img alt="_images/image72.png" src="_images/image72.png" style="width: 5.96875in; height: 2.13542in;" /></a>
+<p>New S3/Hadoop conf files can be added to that group using the Upload
+file(s) option. Please note that only XML files are allowed. The
+configurations within a file can be updated by clicking on the
+respective file name.</p>
+</section>
+<section id="spark-configuration">
+<h3><strong>Spark Configuration</strong><a class="headerlink" href="#spark-configuration" title="Permalink to this heading">#</a></h3>
+<p>Easily configure spark jobs by providing options through orchestrator
+using the below steps:</p>
+<ol class="arabic simple">
+<li><p>Select the Spark Configuration link of the respective group.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/image12.png"><img alt="_images/image12.png" src="_images/image12.png" style="width: 5.36458in; height: 2.40625in;" /></a>
+<p>2. Update existing arguments/configurations or add new ones by clicking
+on the ‘Add in Arguments’ buttons. Existing options can be deleted by
+clicking on the delete option, next to the fields.</p>
+<p>3. Available jars to include on the driver and executor class paths are
+listed under the jars option. Similarly, the available list of .zip,
+.egg, or .py files to place on the PYTHONPATH for Python apps are listed
+under py-files.</p>
+<p>To upload/delete these jars or python files, visit <strong>Cluster
+Configuration</strong>-&gt; <strong>Spark Dependencies</strong>. Upon uploading new jars/python
+files under Spark Dependencies, the same will be added to the respective
+drop-down here.</p>
+<p>Note: New changes get automatically picked up for all the NEWLY
+triggered spark jobs.</p>
+<p>4. For PySpark jobs, to set python for the cluster (executors), in case
+a new python environment is required, configuration
+‘spark.yarn.appMasterEnv.PYSPARK_PYTHON’ can be added under Spark
+Configuration tab and the same can be referred to in individual workflow
+task by using ‘python_conf’ attribute.</p>
+<p>For additional details please refer to section <a class="reference external" href="admin.html#spark-configuration-guide">Spark Configuration
+Guide</a></p>
+</section>
+<section id="notebook-configurations">
+<h3><strong>Notebook Configurations</strong><a class="headerlink" href="#notebook-configurations" title="Permalink to this heading">#</a></h3>
+<p>This feature enables the user to set resource parameters for notebooks
+(for each user). The configurable parameters for notebooks are as
+follows:</p>
+<ol class="arabic simple">
+<li><p>Cpu Limits (min and max) : CPU_GUARANTEE and CPU_LIMIT</p></li>
+<li><p>Memory Limits (min and max) : MEM_GUARANTEE and MEM_LIMIT</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/image11.png"><img alt="_images/image11.png" src="_images/image11.png" style="width: 5.9375in; height: 1.77431in;" /></a>
+</section>
+<section id="kerberos-configurations">
+<h3><strong>Kerberos Configurations</strong><a class="headerlink" href="#kerberos-configurations" title="Permalink to this heading">#</a></h3>
+<p>Configurations for Kerberos clusters can be done by following the below
+steps:</p>
+<p>On the Spark Configuration Groups page, select the Kerberos
+Configuration link of the respective group.</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>For configuring Kerberos, you will have to specify the Kerberos</dt><dd><p>principal, and upload the krb5.conf and the key tab files.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>After uploading the keytab file, you have to select the keytab file.</dt><dd><p>These configurations, if added, are automatically applied to the
+spark jobs which use that configuration group.</p>
+</dd>
+</dl>
+</li>
+</ol>
+</section>
+<section id="livy-configuration">
+<h3><strong>Livy Configuration</strong><a class="headerlink" href="#livy-configuration" title="Permalink to this heading">#</a></h3>
+<p>Livy enables programmatic, fault-tolerant, multi-tenant submission of
+Spark jobs from web/mobile apps. To configure default endpoints of
+sparkmagic kernels, the admin will have to configure Livy endpoints.</p>
+<ul class="simple">
+<li><p>The username/password only needs to be filled when auth is
+Basic_Access.</p></li>
+<li><p>Kerberos Authentication is also supported, you just basically have to
+set auth to Kerberos, and the kerberos configuration (keytab and
+krb5.conf) of your default config group will automatically be picked
+up.</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/image47.png"><img alt="_images/image47.png" src="_images/image47.png" style="width: 5.9375in; height: 2.44792in;" /></a>
+</section>
+</section>
+<section id="variables">
+<h2><strong>Variables</strong><a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h2>
+<p>Variables are a generic way to store and retrieve arbitrary content or
+settings as a simple key-value store within the workflow. Variables can
+be listed, created, updated, and deleted from the UI (<strong>Configuration -&gt;
+Variables</strong>). In addition, json settings files can be bulk uploaded
+through the UI. While pipeline code contains defined constants and
+variables, it can be useful to have some variables or configuration
+items accessible and modifiable through the UI.</p>
+<p>The variable view allows you to list, create, edit or delete the
+key-value pair of a variable used during jobs. Value of a variable will
+be hidden if the key contains any words in (‘password’, ‘secret’,
+‘passwd’, ‘authorization’, ‘api_key’, ‘apikey’, ‘access_token’) by
+default, but can be configured to show in clear-text.</p>
+<p>The second call assumes json content and will be deserialized into a
+bar. Note that Variable is a sqlalchemy model and can be used as such.
+The third call uses the default_var parameter with the valueNone, which
+either returns an existing value or None if the variable isn’t defined.
+The get function will throw a KeyError if the variable doesn’t exist and
+no default is provided.</p>
+<p>Note: Although variables are Fernet keys encrypted in the database, they
+are accessible in the UI and therefore should not be used to store
+passwords or other sensitive data.</p>
+<p><em>When to use each?</em></p>
+<p>In general, since XComs are meant to be used to communicate between
+tasks and store the “conditions” that led to that value being created,
+they should be used for values that are going to be changing each time a
+workflow runs.</p>
+<p>Variables on the other hand are much more natural places for constants
+like a list of tables that need to be synced, a configuration file that
+needs to be pulled from, or a list of IDs to dynamically generate tasks
+from. Both can be very powerful where appropriate, but can also be
+dangerous if misused.</p>
+</section>
+<section id="connections">
+<h2><strong>Connections</strong><a class="headerlink" href="#connections" title="Permalink to this heading">#</a></h2>
+<p>The connection information to external systems is stored in the workflow
+metadata database and managed in the UI (<strong>Configuration -&gt;
+Connections</strong>). A conn_id is defined there and hostname / login /
+password / schema information attached to it. A user can create, delete,
+edit the connections based on the permissions given to that role of the
+user.</p>
+<p>Pipelines can simply refer to the centrally managed conn_id without
+having to hard code any of this information anywhere. Many connections
+with the same conn_id can be defined, workflow will choose one
+connection randomly, allowing for some basic load balancing and fault
+tolerance when used in conjunction with retries.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="pipeline.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Pipelines Developer Reference</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="distributedTrace.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><strong>Distributed Trace</strong></div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023
+            </div>
+  
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><strong>Configurations</strong></a><ul>
+<li><a class="reference internal" href="#cluster-configurations"><strong>Cluster Configurations</strong></a><ul>
+<li><a class="reference internal" href="#data-lake-configurations"><strong>Data Lake Configurations</strong></a></li>
+<li><a class="reference internal" href="#spark-configuration"><strong>Spark Configuration</strong></a></li>
+<li><a class="reference internal" href="#notebook-configurations"><strong>Notebook Configurations</strong></a></li>
+<li><a class="reference internal" href="#kerberos-configurations"><strong>Kerberos Configurations</strong></a></li>
+<li><a class="reference internal" href="#livy-configuration"><strong>Livy Configuration</strong></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variables"><strong>Variables</strong></a></li>
+<li><a class="reference internal" href="#connections"><strong>Connections</strong></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    </body>
+</html>
