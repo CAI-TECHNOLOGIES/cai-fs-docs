@@ -10,7 +10,10 @@
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
-    
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
     
 
 
@@ -238,240 +241,176 @@ define a single task of the pipeline.</p>
 <section id="basic-parameters">
 <h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>dag: CaiDAG - Object of the CaiDAG Class</p></li>
-<li><p>task_id: str - Task ID for the task (used in Dag context)</p></li>
-<li><p>code_artifact: List[str] - List of Code Artifacts to be used.</p></li>
 <li><dl class="simple">
-<dt>method_id: str - Method ID for the specific Task (used in Code</dt><dd><p>Artifact codebase context)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>input_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>input files. This has to be a string</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>input_filenames_dict: Optional[Dict], {} - Relative file paths for</dt><dd><p>input files w.r.t input base directory. To be passed in dictionary
-format.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
+<dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
+<li><dl class="simple"><dt>task_id: str</dt><p>- Task ID for the task (used in Dag context)</p></dl></li>
+<li><dl class="simple"><dt>code_artifact: str</dt><p>- Code Artifact to be used.</p></dl></li>
+<li><dl class="simple"><dt>method_id: str</dt><p> - Method ID for the specific Task (used in Code Artifact codebase context)</p></dl></li>
+<!-- <li><dl class="simple"><dt>input_base_dir_path: Optional[str]</dt><p>- Base directory path for input files. This has to be a string</p></dl></li> -->
+<li><dl class="simple"><dt>input_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary
+format.</p></dl></li>
+<!-- <li><dl class="simple">
 <dt>output_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>output files. This has to be a string</p>
 </dd>
 </dl>
-</li>
-<li><dl class="simple">
-<dt>output_filenames_dict: Optional[Dict], {} - Relative file paths for</dt><dd><p>output files w.r.t output base directory. To be passed in
-dictionary format.</p>
-</dd>
-</dl>
-</li>
+</li> -->
+<li><dl class="simple"><dt>output_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
 </ul>
-<p><em>Advanced</em> <em>Parameters</em></p>
+<h4><em>Advanced</em> <em>Parameters</em></h4>
 <ul class="simple">
-<li><dl class="simple">
-<dt>method_args_dict: Optional[Dict], {} - Arguments required for main</dt><dd><p>method of the main class. To be passed in dictionary format and
-very customizable.</p>
-</dd>
-</dl>
-</li>
+  <li><dl class="simple"><dt>method_args_dict: Optional[Dict]</dt><p>- Arguments required for main method of the main class. To be passed in dictionary format and
+very customizable.</p></dl></li>
 </ul>
 </section>
 <section id="dag-format">
 <h4><em>Dag format</em><a class="headerlink" href="#dag-format" title="Permalink to this heading">#</a></h4>
-<div class="line-block">
-<div class="line">from cai_python_plugin import CaiPythonOperator</div>
-<div class="line">from cai_dag import CaiDAG</div>
-<div class="line">dag = CaiDAG(</div>
-<div class="line">default_args={‘owner’: ‘ocb’},</div>
-<div class="line">schedule_interval=None,</div>
-<div class="line">)</div>
-<div class="line">task = CaiPythonOperator(</div>
-<div class="line">task_id=’task_id’,</div>
-<div class="line">method_id=’method_id’,</div>
-<div class="line">code_artifact=code_artifact,</div>
-<div class="line">method_args_dict={},</div>
-<div class="line">description=’Description’,</div>
-<div class="line">dag=dag</div>
-</div>
-<p>)</p>
+<pre>
+  <code>
+from cai_python_plugin import CaiPythonOperator
+from cai_dag import CaiDAG
+dag = CaiDAG(
+  default_args={‘owner’: ‘ocb’},
+  schedule_interval=None,
+)
+
+task = CaiPythonOperator(
+  task_id=’task_id’,
+  method_id=’method_id’,
+  code_artifact=code_artifact,
+  method_args_dict={},
+  description=’Description’,
+  dag=dag
+)
+  </code>
+</pre>
 </section>
 <section id="example">
 <h4><em>Example</em><a class="headerlink" href="#example" title="Permalink to this heading">#</a></h4>
-<p>from cai_python_plugin import CaiPythonOperator</p>
-<p>from cai_dag import CaiDAG</p>
-<p>/# Example dag containing DSCW python operator. This uses a listed code</p>
-<p># artifact, input csv to analyze and produce an output csv for given
-names.</p>
-<p>#/</p>
-<p>code_artifact = ‘example_egg_path.egg’</p>
-<p>input_file_abspath = ‘example_folder/example_input_path.csv’</p>
-<p>output_file_abspath = ‘example_folder/example_output_file_path.csv’</p>
-<p>input_folder, input_file = input_file_abspath.rsplit(‘/’,1)</p>
-<p>output_folder, output_file = output_file_abspath.rsplit(‘/’,1)</p>
-<div class="line-block">
-<div class="line">dag = CaiDAG(</div>
-<div class="line">default_args={‘owner’: ‘ocb’},</div>
-<div class="line">schedule_interval=None,</div>
-<div class="line">)</div>
-</div>
-<p>ExamplePythonAnalysis = CaiPythonOperator(</p>
-<p>task_id=’example_python_task’,</p>
-<p>method_id=’example_python_task’,</p>
-<p>code_artifact=code_artifact,</p>
-<p>input_base_dir_path=input_folder,</p>
-<p>input_filenames_dict={</p>
-<p>‘input_data_file’: input_file,</p>
-<p>},</p>
-<p>output_base_dir_path=output_folder,</p>
-<p>output_filenames_dict={</p>
-<p>‘output_data_file’: output_file,</p>
-<p>},</p>
-<p>method_args_dict={},</p>
-<p>description=’Python Analyze given input csv’,</p>
-<p>dag=dag</p>
-<p>)</p>
-<p>ExamplePythonAnalysis</p>
-</section>
+<pre><code>
+from cai_python_plugin import CaiPythonOperator
+from cai_dag import CaiDAG
+
+#Example dag containing DSCW python operator. This uses a listed code
+#artifact, input csv to analyze and produce an output csv for given names.
+
+code_artifact = ‘example_egg_path.egg’
+input_file_path = ‘example_folder_relative_to_s3_directory/example_input_path.csv’
+output_file_path = ‘example_folder_relative_to_s3_directory/example_output_file_path.csv’
+dag = CaiDAG(
+  default_args={‘owner’: ‘ocb’},
+  schedule_interval=None,
+)
+
+ExamplePythonAnalysis = CaiPythonOperator(
+  task_id=’example_python_task’,
+  method_id=’example_python_task’,
+  code_artifact=code_artifact,
+  input_filenames_dict={
+    ‘input_data_file’: input_file,
+  },
+  output_filenames_dict={
+    ‘output_data_file’: output_file,
+  },
+  method_args_dict={},
+  description=’Python Analyze given input csv’,
+  dag=dag
+)
+</code></pre>
 </section>
 <section id="k8pythonoperator">
 <h3><strong>K8PythonOperator</strong><a class="headerlink" href="#k8pythonoperator" title="Permalink to this heading">#</a></h3>
-<p>Use the K8PythonOperator to execute Python Code over a new Kubernetes
-Pod.Kubernetes.</p>
+<p>Use the K8PythonOperator to execute Python Code over a new Kubernetes Pod.</p>
 <section id="basic-parameters-1">
 <span id="id1"></span><h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters-1" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>dag: CaiDAG - Object of the CaiDAG Class</p></li>
-<li><p>task_id: str - Task ID for the task (used in Dag context)</p></li>
-<li><dl class="simple">
-<dt>method_id: str - Method ID for the specific Task (used in Code</dt><dd><p>Artifact codebase context)</p>
-</dd>
-</dl>
-</li>
-<li><p>code_artifact: List[str] - List of Code Artifacts to be used.</p></li>
-<li><p>image: str - The python image to be used</p></li>
-<li><dl class="simple">
-<dt>name: Optional[str] - name of the pod in which the task will run,</dt><dd><p>will be used (plus a random suffix) to generate a pod id (DNS-1123
-subdomain, containing only [a-z0-9.-]).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>input_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>input files. This has to be a string</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>input_filenames_dict: Optional[Dict], {} - Relative file paths for</dt><dd><p>input files w.r.t input base directory. To be passed in dictionary
-format.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
+<li><dl class="simple"><dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
+<li><dl class="simple"><dt>task_id: str</dt><p>- Task ID for the task (used in Dag context)</p></dl></li>
+<li><dl class="simple"><dt>method_id: str</dt><p>- Method ID for the specific Task (used in Code Artifact codebase context)</p></dl></li>
+<li><dl class="simple"><dt>code_artifact: str</dt><p>- Code Artifact to be used.</p></dl></li>
+<li><dl class="simple"><dt>image: str</dt><p>- The python image to be used</p></dl></li>
+<li><dl class="simple"><dt>name: Optional[str]</dt><p>- name of the pod in which the task will run, will be used (plus a random suffix) to generate a pod id (DNS-1123
+subdomain, containing only [a-z0-9.-]).</p></dl></li>
+<!-- <li><dl class="simple"><dt>input_base_dir_path: Optional[str]</dt><p>- Base directory path for input files. This has to be a string</p></dl></li> -->
+<li><dl class="simple"><dt>input_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
+<!-- <li><dl class="simple">
 <dt>output_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>output files. This has to be a string</p>
 </dd>
 </dl>
-</li>
-<li><dl class="simple">
-<dt>output_filenames_dict: Optional[Dict], {} - Relative file paths for</dt><dd><p>output files w.r.t output base directory. To be passed in
-dictionary format.</p>
-</dd>
-</dl>
-</li>
+</li> -->
+<li><dl class="simple"><dt>output_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
 </ul>
 <p id="advanced-parameters-1"><em>Advanced</em> <em>Parameters</em></p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>method_args_dict: Optional[Dict], {} - Arguments required for main</dt><dd><p>method of the main class. To be passed in dictionary format and
-very customizable.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>config_group: Optional[str] - Name of the config_group to use. If not</dt><dd><p>given, use default group specified in Cluster config</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>namespace: Optional[str] - the namespace to run within kubernetes. If</dt><dd><p>not given, default namespace</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>get_logs: Optional[bool] - get the stdout of the container as logs of</dt><dd><p>the tasks.</p>
-</dd>
-</dl>
-</li>
+<li><dl class="simple"><dt>method_args_dict: Optional[Dict]</dt><p>- Arguments required for main method of the main class. To be passed in dictionary format and
+very customizable.</p></dl></li>
+<li><dl class="simple"><dt>config_group: Optional[str]</dt><p>- Name of the config_group to use. If not given, use default group specified in Cluster config</p></dl></li>
+<li><dl class="simple"><dt>namespace: Optional[str]</dt><p>- the namespace to run within kubernetes. If not given, default namespace</p></dl></li>
+<li><dl class="simple"><dt>get_logs: Optional[bool]</dt><p>- get the stdout of the container as logs of the tasks.</p></dl></li>
 </ul>
 </section>
 <section id="dag-format-1">
 <span id="id2"></span><h4><em>Dag format</em><a class="headerlink" href="#dag-format-1" title="Permalink to this heading">#</a></h4>
 <div class="line-block">
-<div class="line">from cai_k8_python_plugin import CaiK8PythonOperator</div>
-<div class="line">from cai_dag import CaiDAG</div>
-<div class="line">dag = CaiDAG(</div>
-<div class="line">default_args={‘owner’: ‘ocb’},</div>
-<div class="line">schedule_interval=None,</div>
-<div class="line">)</div>
-</div>
-<div class="line-block">
-<div class="line">task = CaiK8PythonOperator(</div>
-<div class="line">task_id=’task_id’,</div>
-<div class="line">method_id=’method_id’,</div>
-</div>
-<p>code_artifact=code_artifact,</p>
-<blockquote>
-<div><p>image=’python_image’,</p>
-<div class="line-block">
-<div class="line">name=’k8_py_name’,</div>
-<div class="line">method_args_dict={},</div>
-<div class="line">description=’Description’,</div>
-<div class="line">dag=dag,</div>
-</div>
-</div></blockquote>
-<p>)</p>
+<pre>
+  <code>
+from cai_k8_python_plugin import CaiK8PythonOperator
+from cai_dag import CaiDAG
+dag = CaiDAG(
+  default_args={‘owner’: ‘ocb’},
+  schedule_interval=None,
+)
+task = CaiK8PythonOperator(
+  task_id=’task_id’,
+  method_id=’method_id’,
+  code_artifact=code_artifact,
+  image=’python_image’,
+  name=’k8_py_name’,
+  method_args_dict={},
+  description=’Description’,
+  dag=dag,
+)
+  </code>
+</pre>
 </section>
 <section id="examples">
 <h4><em>Examples</em><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h4>
-<p>from cai_k8_python_plugin import CaiK8PythonOperator</p>
-<p>from cai_dag import CaiDAG</p>
-<p>/# Example dag containing DSCW K8s python operator.This uses a listed
-code</p>
-<p># artifact, input csv to analyze and produce an output csv for given
-names.</p>
-<p># This python operation has the ability to use an independent Python
-image</p>
-<p># using Kubernetes support.</p>
-<p>#/</p>
-<p>code_artifact = ‘example_egg_path.egg’</p>
-<p>input_file_abspath = ‘example_folder/example_input_path.csv’</p>
-<p>output_file_abspath = ‘example_folder/example_output_file_path.csv’</p>
-<p>input_folder, input_file = input_file_abspath.rsplit(‘/’,1)</p>
-<p>output_folder, output_file = output_file_abspath.rsplit(‘/’,1)</p>
-<p>dag = CaiDAG(</p>
-<p>default_args={‘owner’: ‘ocb’},</p>
-<p>schedule_interval=None,</p>
-<p>)</p>
-<p>task = CaiK8PythonOperator(</p>
-<p>task_id=’example_k8s_python_task’,</p>
-<p>method_id=’example_k8s_python_task’,</p>
-<p>code_artifact=code_artifact,</p>
-<p>name=’example’,</p>
-<p>image=’python_image’,</p>
-<p>input_base_dir_path=input_folder,</p>
-<p>input_filenames_dict={</p>
-<p>‘input_data_file’: input_file,</p>
-<p>},</p>
-<p>output_base_dir_path=output_folder,</p>
-<p>output_filenames_dict={</p>
-<p>‘output_data_file’: output_file,</p>
-<p>},</p>
-<p>method_args_dict={},</p>
-<p>description=’Python K8s Analyze given input csv’,</p>
-<p>dag=dag,</p>
-<p>)</p>
+<pre>
+  <code>
+from cai_k8_python_plugin import CaiK8PythonOperator
+from cai_dag import CaiDAG
+# Example dag containing DSCW K8s python operator.This uses a listed code
+# artifact, input csv to analyze and produce an output csv for given names.
+# This python operation has the ability to use an independent Python image
+# using Kubernetes support.
+
+code_artifact = ‘example_egg_path.egg’
+input_file_abspath = ‘example_folder_relative_to_s3_directory/example_input_path.csv’
+output_file_abspath = ‘example_folder_relative_to_s3_directory/example_output_file_path.csv’
+
+
+dag = CaiDAG(
+  default_args={‘owner’: ‘ocb’},
+  schedule_interval=None,
+)
+
+task = CaiK8PythonOperator(
+  task_id=’example_k8s_python_task’,
+  method_id=’example_k8s_python_task’,
+  code_artifact=code_artifact,
+  name=’example’,
+  image=’python_image’,
+  input_filenames_dict={
+    ‘input_data_file’: input_file,
+  },
+  output_filenames_dict={
+    ‘output_data_file’: output_file,
+  },
+  method_args_dict={},
+  description=’Python K8s Analyze given input csv’,
+  dag=dag,
+)
+  </code>
+</pre>
 </section>
 </section>
 <section id="k8pysparkoperator">
@@ -482,7 +421,7 @@ cluster.</p>
 <h4><em>Prerequisites</em><a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
 <li><dl class="simple">
-<dt>Set the spark configuration appropriately. The important fields</dt><dd><p>required are:</p>
+<dt>Set the spark configuration appropriately. The important fields required are:</p>
 </dd>
 </dl>
 </li>
@@ -503,134 +442,88 @@ default=default&gt;</div>
 <section id="basic-parameters-2">
 <span id="id3"></span><h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters-2" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>dag: CaiDAG - Object of the CaiDAG Class</p></li>
-<li><p>task_id: str - Task ID for the task (used in Dag context)</p></li>
-<li><dl class="simple">
-<dt>method_id: str - Method ID for the specific Task (used in Code</dt><dd><p>Artifact codebase context)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>code_artifact: List[str] - List of Code Artifacts to be used as</dt><dd><p>Pyspark dependencies.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>name: Optional[str] - name of the pod in which the task will run,</dt><dd><p>will be used (plus a random suffix) to generate a pod id (DNS-1123
-subdomain, containing only [a-z0-9.-]).</p>
-</dd>
-</dl>
-</li>
-<li><p>app_name: Optional[str], “” - Name of the Application</p></li>
-<li><dl class="simple">
-<dt>input_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>input files. This has to be a string</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>input_filenames_dict: Optional[Dict], {} - Relative file paths for</dt><dd><p>input files w.r.t input base directory. To be passed in dictionary
-format.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>output_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>output files. This has to be a string</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>output_filenames_dict: Optional[Dict], {} - Relative file paths for</dt><dd><p>output files w.r.t output base directory. To be passed in
-dictionary format.</p>
-</dd>
-</dl>
-</li>
+<li><dl class="simple"><dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
+<li><dl class="simple"><dt>task_id: str</dt><p>- Task ID for the task (used in Dag context)</p></dl></li>
+<li><dl class="simple"><dt>method_id: str</dt><p>- Method ID for the specific Task (used in Code Artifact codebase context)</p></dl></li>
+<li><dl class="simple"><dt>code_artifact: List[str]</dt><p>- List of Code Artifacts to be used as Pyspark dependencies.</p></dl></li>
+<li><dl class="simple"><dt>name: Optional[str]</dt><p>- name of the pod in which the task will run, will be used (plus a random suffix) to generate a pod id (DNS-1123
+subdomain, containing only [a-z0-9.-]).</p></dl></li>
+<li><dl class="simple"><dt>app_name: Optional[str]</dt><p>- Name of the Application</p></dl></li>
+<li><dl class="simple"><dt>input_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
+<li><dl class="simple"><dt>output_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
 </ul>
 <p id="advanced-parameters-2"><em>Advanced</em> <em>Parameters</em></p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>method_args_dict: Optional[Dict], {} - Arguments required for main</dt><dd><p>method of the main class. To be passed in dictionary format and
-very customizable.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>config_group: Optional[str] - Name of the config_group to use. If not</dt><dd><p>given, use default group specified in Cluster config</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>namespace: Optional[str] - the namespace to run within kubernetes. If</dt><dd><p>not given, default namespace</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>get_logs: Optional[bool] - get the stdout of the container as logs of</dt><dd><p>the tasks.</p>
-</dd>
-</dl>
-</li>
+<li><dl class="simple"><dt>method_args_dict: Optional[Dict]</dt><p>- Arguments required for main method of the main class. To be passed in dictionary format and
+very customizable.</p></dl></li>
+<li><dl class="simple"><dt>config_group: Optional[str]</dt><p>- Name of the config_group to use. If not given, use default group specified in Cluster config</p></dl></li>
+<li><dl class="simple"><dt>namespace: Optional[str]</dt><p>- the namespace to run within kubernetes. If not given, default namespace</p></dl></li>
+<li><dl class="simple"><dt>get_logs: Optional[bool]</dt><p>- get the stdout of the container as logs of the tasks.</p></dl></li>
 </ul>
 </section>
 <section id="dag-format-2">
 <span id="id4"></span><h4><em>Dag format</em><a class="headerlink" href="#dag-format-2" title="Permalink to this heading">#</a></h4>
 <div class="line-block">
-<div class="line">from cai_k8_pyspark_plugin import CaiK8PySparkOperator</div>
-<div class="line">from cai_dag import CaiDAG</div>
-<div class="line">dag = CaiDAG(</div>
-<div class="line">default_args={‘owner’: ‘ocb’},</div>
-<div class="line">schedule_interval=None,</div>
-<div class="line">)</div>
-<div class="line">task = CaiK8PySparkOperator(</div>
-<div class="line">task_id=’task_id’,</div>
-<div class="line">method_id=’method_id’,</div>
-</div>
-<p>code_artifact=code_artifact,</p>
-<blockquote>
-<div><p>name=’k8_py_name’,</p>
-<div class="line-block">
-<div class="line">app_name=’k8_py_app_name’,</div>
-<div class="line">method_args_dict={},</div>
-<div class="line">description=’Description’,</div>
-<div class="line">dag=dag,</div>
-</div>
-</div></blockquote>
-<p>)</p>
+<pre>
+  <code>
+from cai_k8_pyspark_plugin import CaiK8PySparkOperator
+from cai_dag import CaiDAG
+dag = CaiDAG(
+  default_args={‘owner’: ‘ocb’},
+  schedule_interval=None,
+)
+task = CaiK8PySparkOperator(
+  task_id=’task_id’,
+  method_id=’method_id’,
+  code_artifact=code_artifact,
+  name=’k8_py_name’,
+  app_name=’k8_py_app_name’,
+  method_args_dict={},
+  description=’Description’,
+  dag=dag,
+) 
+  </code>
+</pre>
 </section>
 <section id="example-dag">
 <h4><em>Example Dag</em><a class="headerlink" href="#example-dag" title="Permalink to this heading">#</a></h4>
-<p>from cai_k8_pyspark_plugin import CaiK8PySparkOperator</p>
-<p>from cai_dag import CaiDAG</p>
-<p>/# Example dag containing DSCW K8s Py-spark operator.This uses a listed</p>
-<p># code artifact, input csv to analyze and produce an output csv for
-given</p>
-<p># names. This spark operation can handle both spark and python</p>
-<p># functionalities bundled inside code artifacts (ie. egg files)</p>
-<p>#/</p>
-<p>code_artifact = ‘example_egg_path.egg’</p>
-<p>input_file_abspath = ‘example_folder/example_input_path.csv’</p>
-<p>output_file_abspath = ‘example_folder/example_output_file_path.csv’</p>
-<p>input_folder, input_file = input_file_abspath.rsplit(‘/’,1)</p>
-<p>output_folder, output_file = output_file_abspath.rsplit(‘/’,1)</p>
-<p>dag = CaiDAG(</p>
-<p>default_args={‘owner’: ‘ocb’},</p>
-<p>schedule_interval=None,</p>
-<p>)</p>
-<p>task = CaiK8PySparkOperator(</p>
-<p>task_id=’example_k8s_pyspark_task’,</p>
-<p>method_id=’example_k8s_pyspark_task’,</p>
-<p>code_artifact=code_artifact,</p>
-<p>name=’example’,</p>
-<p>input_base_dir_path=input_folder,</p>
-<p>input_filenames_dict={</p>
-<p>‘input_data_file’: input_file,</p>
-<p>},</p>
-<p>output_base_dir_path=output_folder,</p>
-<p>output_filenames_dict={</p>
-<p>‘output_data_file’: output_file,</p>
-<p>},</p>
-<p>method_args_dict={},</p>
-<p>description=’K8s Pyspark Analyze given input csv’,</p>
-<p>dag=dag,</p>
-<p>)</p>
+<pre>
+  <code>
+from cai_k8_pyspark_plugin import CaiK8PySparkOperator
+from cai_dag import CaiDAG
+
+# Example dag containing DSCW K8s Py-spark operator.This uses a listed
+# code artifact, input csv to analyze and produce an output csv for given
+# names. This spark operation can handle both spark and python
+# functionalities bundled inside code artifacts (ie. egg files)
+
+code_artifact = [‘example_egg_path.egg’]
+input_file_abspath = ‘example_folder_relative_to_s3_directory/example_input_path.csv’
+output_file_abspath = ‘example_folder_relative_to_s3_directory/example_output_file_path.csv’
+
+
+dag = CaiDAG(
+  default_args={‘owner’: ‘ocb’},
+  schedule_interval=None,
+)
+
+task = CaiK8PySparkOperator(
+  task_id=’example_k8s_pyspark_task’,
+  method_id=’example_k8s_pyspark_task’,
+  code_artifact=code_artifact,
+  name=’example’,    
+  input_filenames_dict={
+    ‘input_data_file’: input_file,
+  },
+  output_filenames_dict={
+    ‘output_data_file’: output_file,
+  },
+  method_args_dict={},
+  description=’K8s Pyspark Analyze given input csv’,
+  dag=dag,
+)
+  </code>
+</pre>
 </section>
 </section>
 <section id="bashoperator">
@@ -639,41 +532,35 @@ given</p>
 <section id="parameters">
 <h4><em>Parameters</em><a class="headerlink" href="#parameters" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><dl class="simple">
-<dt>bash_command: str - The command, set of commands or reference to a</dt><dd><p>bash script (must be ‘.sh’) to be executed. (templated)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>env: Optional[Dict], None - If env is not None, it must be a dict</dt><dd><p>that defines the environment variables for the new process; these
+<li><dl class="simple"><dt>bash_command: str</dt><p>- The command, set of commands or reference to a bash script (must be ‘.sh’) to be executed. (templated)</p></dl></li>
+<li><dl class="simple"><dt>env: Optional[Dict]</dt><p>- If env is not None, it must be a dict that defines the environment variables for the new process; these
 are used instead of inheriting the current process environment,
-which is the default behavior. (templated)</p>
-</dd>
-</dl>
-</li>
-<li><p>output_encoding: Optional[str] - Output encoding of bash command</p></li>
-<li><dl class="simple">
-<dt>cwd: Optional[str], None - Working directory to execute the command</dt><dd><p>in. If None (default), the command is run in a temporary
-directory.</p>
-</dd>
-</dl>
-</li>
+which is the default behavior. (templated)</p></dl></li>
+<li><dl class="simple"><dt>output_encoding: Optional[str]</dt><p>- Output encoding of bash command</p></dl></li>
+<li><dl class="simple"><dt>cwd: Optional[str]</dt><p>- Working directory to execute the command in. If None (default), the command is run in a temporary
+directory.</p></dl></li>
 </ul>
 </section>
 <section id="example-1">
 <span id="id5"></span><h4><em>Example</em><a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h4>
 <div class="line-block">
-<div class="line">from cai_bash_plugin import CaiBashOperator</div>
-<div class="line">from cai_dag import CaiDAG</div>
-<div class="line">dag = CaiDAG(</div>
-<div class="line">default_args={‘owner’: ‘owner’},</div>
-<div class="line">schedule_interval=None,</div>
-<div class="line">)</div>
-<div class="line">run_this = CaiBashOperator(</div>
-<div class="line">task_id=’task_id’,</div>
-<div class="line">bash_command=’bash_command’,</div>
-<div class="line">dag=dag,</div>
-<div class="line">)</div>
+  <pre>
+    <code>
+from cai_bash_plugin import CaiBashOperator
+from cai_dag import CaiDAG
+
+dag = CaiDAG(
+  default_args={‘owner’: ‘owner’},
+  schedule_interval=None,
+)
+
+run_this = CaiBashOperator(
+  task_id=’task_id’,
+  bash_command=’bash_command’,
+  dag=dag,
+)
+    </code>
+  </pre>
 </div>
 </section>
 </section>
@@ -685,50 +572,46 @@ offset, filter_by a column to send rows which match a specific value.</p>
 <section id="parameters-1">
 <span id="id6"></span><h4><em>Parameters</em><a class="headerlink" href="#parameters-1" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p>dag: CaiDAG - Object of the CaiDAG Class</p></li>
-<li><p>batch_offset: Optional[int]: Default 0</p></li>
-<li><p>batch_size: Optional[int]: Size of the batch. Defaults to 10.</p></li>
+<li><dl class="simple"><dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
+<li><dl class="simple"><dt>batch_offset: Optional[int]:</dt><p>Default 0</p></dl></li>
+<li><dl class="simple"><dt>batch_size: Optional[int]</dt><p>- Size of the batch. Defaults to 10.</p></dl></li>
+<li><dl class="simple"><dt>filter_by: Optional[str]</dt><p>- Column name to filter_by. Defaults to None, which means all rows will be passed.</p></dl></li>
 <li><dl class="simple">
-<dt>filter_by: Optional[str]: Column name to filter_by. Defaults to None,</dt><dd><p>which means all rows will be passed.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>filter_values: Optional[List[str]]: Values in a list with which the</dt><dd><p>filter_by column must match against for a row to be passed to
-target dag.</p>
-</dd>
-</dl>
-</li>
-<li><p>run_dag_id: str: Dag id of the target dag.</p></li>
-<li><dl class="simple">
-<dt>metadata_file: Optional[str]: File which contains the csv rows which</dt><dd><p>should be passed. Any valid string path is acceptable. The string
+<dt>filter_values: Optional[List[str]]</dt><p>- Values in a list with which the filter_by column must match against for a row to be passed to
+target dag.</p></dl></li>
+<li><dl class="simple"><dt>run_dag_id: str</dt><p>- Dag id of the target dag.</p></dl></li>
+<li><dl class="simple"><dt>metadata_file: Optional[str]</dt><p>- File which contains the csv rows which should be passed. Any valid string path is acceptable. The string
 could be a URL. Valid URL schemes include http, ftp, s3, gs, and
 file. For file URLs, a host is expected. A local file could be:
-<a class="reference external" href="file://localhost/path/to/table.csv">file://localhost/path/to/table.csv</a>.</p>
-</dd>
-</dl>
-</li>
+file://localhost/path/to/table.csv.</p></dl></li>
 </ul>
 </section>
 <section id="example-2">
 <span id="id7"></span><h4><em>Example</em><a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h4>
 <div class="line-block">
-<div class="line">from cai_loopable_batch_plugin import CaiLoopableBatchOperator</div>
-<div class="line">from cai_dag import CaiDAG</div>
-<div class="line">dag_id = ‘&lt;new_dag_filename&gt;’</div>
-<div class="line">input_meta_location = ‘&lt;path_to_csv&gt;’</div>
-<div class="line">dag = CaiDAG(</div>
-<div class="line">default_args={‘owner’: ‘DSCW’s},</div>
-<div class="line">schedule_interval=None,</div>
-<div class="line">)</div>
-<div class="line">task1 = CaiLoopableBatchOperator(</div>
-<div class="line">dag=dag,</div>
-<div class="line">run_dag_id=dag_id,</div>
-<div class="line">task_id=’task_id’,</div>
-<div class="line">batch_size=5,</div>
-<div class="line">batch_offset=0,</div>
-<div class="line">metadata_file=input_meta_location</div>
-<div class="line">)</div>
+  <pre>
+    <code>
+from cai_loopable_batch_plugin import CaiLoopableBatchOperator
+from cai_dag import CaiDAG
+
+dag_id = 'new_dag_filename'
+input_meta_location = 'path_to_csv'
+
+dag = CaiDAG(
+  default_args={'owner': 'ocb'},
+  schedule_interval=None,
+)
+
+task1 = CaiLoopableBatchOperator(
+  dag=dag,
+  run_dag_id=dag_id,
+  task_id=’task_id’,
+  batch_size=5,
+  batch_offset=0,
+  metadata_file=input_meta_location
+)
+    </code>
+  </pre>
 </div>
 <p>This dag triggers a dag with the specified run_dag_id (filename of the
 new dag).</p>
