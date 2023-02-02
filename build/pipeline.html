@@ -317,6 +317,269 @@ ExamplePythonAnalysis = CaiPythonOperator(
 )
 </code></pre>
 </section>
+<section id="example-caiiosupport">
+  <h4><em>Example Using CaiIOSupport</em><a class="headerlink" href="#examplecaiiosupport" title="Permalink to this heading">#</a></h4>
+
+  <blockquote>
+    <div><a class="reference internal image-reference" href="_images/caiiosupport_python_test.gif"><img
+          alt="_images/caiiosupport_python_test.gif" src="_images/caiiosupport_python_test.gif"
+          style="width: 7.74479in; height: 3.53585in;" /></a>
+    </div>
+  </blockquote>
+<p>
+  This is a sample Pipeline which reads files as a pandas dataframe from s3 and writes pandas dataframes to s3 in specified file formats.
+</p>
+<p>
+  The file formats supported are ["csv","tsv","parquet","xls","xlsx","json","feather"]
+</p>
+<p>
+  Steps to run the sample pipeline are as follows:
+</p>
+<ul>
+  <li>
+    Copy following main.py in notebook as a .py/ipynb file.
+  </li>
+  <h5><em>Main file for the Code Artifact</em><a class="headerlink" href="#mainpythonoperator" title="Permalink to this heading">#</a></h5>
+<pre><code>
+# Python code-artifact example which can be used for operations : READ, WRITE, MOVE
+import sys
+from cai_utils.utils import CaiIOSupport  ### Do not modify
+
+def processDF(input_df):
+    """
+    Process the input dataframe generated from the csv.
+    """
+    return input_df
+
+
+def main():
+    cai_io_support = CaiIOSupport()  ### Do not modify
+    arg = cai_io_support.parse_args(sys.argv[1:])  ### Do not modify
+
+    if arg["method_id"] == "read_csv":
+        input_df_from_csv = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_csv)
+
+    if arg["method_id"] == "read_tsv":
+        input_df_from_tsv = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_tsv)
+
+    if arg["method_id"] == "read_parquet":
+        input_df_from_parquet = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_parquet)
+
+    if arg["method_id"] == "read_xls":
+        input_df_xls = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_xls)
+
+    if arg["method_id"] == "read_xlsx":
+        input_df_xlsx = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_xlsx)
+
+    if arg["method_id"] == "read_json":
+        input_df_from_json = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_json)
+
+    if arg["method_id"] == "read_feather":
+        input_df_from_feather = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_feather)
+
+    if arg["method_id"] == "read_csv_write_tsv":
+        input_df_from_csv = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_csv)
+        cai_io_support.write_pd_file_to_s3(arg["output_path"], output_df)
+
+    if arg["method_id"] == "read_tsv_write_parquet":
+        input_df_from_tsv = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_tsv)
+        cai_io_support.write_pd_file_to_s3(arg["output_path"], output_df)
+
+    if arg["method_id"] == "read_parquet_write_xlsx":
+        input_df_from_parquet = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_parquet)
+        cai_io_support.write_pd_file_to_s3(arg["output_path"], output_df)
+
+    if arg["method_id"] == "read_xlsx_write_json":
+        input_df_from_xlsx = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_xlsx)
+        cai_io_support.write_pd_file_to_s3(arg["output_path"], output_df)
+
+    if arg["method_id"] == "read_json_write_feather":
+        input_df_from_json = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_json)
+        cai_io_support.write_pd_file_to_s3(arg["output_path"], output_df)
+
+    if arg["method_id"] == "read_feather_write_csv":
+        input_df_from_feather = cai_io_support.read_file_to_pd(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_feather)
+        cai_io_support.write_pd_file_to_s3(arg["output_path"], output_df)
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+<li>
+  Right click on the ipynb/py file and upload it to pipelines as a code artifact.
+</li>
+<li>
+  Specify the code artifact name in the sample pipeline code given below.
+</li>
+<li>
+  Make sure the input file is present in s3.
+</li>
+<h5><em>Pipeline Code</em><a class="headerlink" href="#pipelinepythonoperator" title="Permalink to this heading">#</a></h5>
+
+<pre>
+  <code>
+# Python Example dag
+from cai_python_plugin import CaiPythonOperator
+from cai_k8_pyspark_plugin import CaiK8PySparkOperator
+from cai_dag import CaiDAG
+from datetime import datetime
+
+default_args = {
+    'depends_on_past': False,
+    'start_date': datetime(2022, 8, 5),
+    'retries': 0,
+}
+
+dag = CaiDAG(
+    default_args=default_args,
+    schedule_interval=None,
+)
+
+python_code_artifact = 'py_test-1.0.0-py3.10.egg'
+
+# Here the python pipeline READS a csv from [read_input_path_csv],
+# WRITES file to [write_output_path_tsv]
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_csv = 'file_csv_csv.csv'
+write_output_path_tsv = 'file_csv_tsv.tsv'
+
+
+
+
+read_csv_write_tsv = CaiPythonOperator(
+    task_id='read_csv_write_tsv',
+    method_id='read_csv_write_tsv',
+    code_artifact=python_code_artifact,
+    input_filenames_dict={"path": read_input_path_csv},
+    output_filenames_dict={"path": write_output_path_tsv},
+    method_args_dict={},
+    description='Description',
+    dag=dag
+)
+
+# Here the python pipeline READS a tsv from [read_input_path_tsv],
+# WRITES file to [write_output_path_parquet]
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_tsv = 'file_csv_tsv.tsv'
+write_output_path_parquet = 'file_tsv_parquet.parquet'
+
+
+read_tsv_write_parquet = CaiPythonOperator(
+    task_id='read_tsv_write_parquet',
+    method_id='read_tsv_write_parquet',
+    code_artifact=python_code_artifact,
+    input_filenames_dict={"path": read_input_path_tsv},
+    output_filenames_dict={"path": write_output_path_parquet},
+    method_args_dict={},
+    description='Description',
+    dag=dag
+)
+
+# Here the python pipeline READS a parquet from [read_input_path_parquet],
+# WRITES file to [write_output_path_xlsx]
+
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_parquet = 'file_tsv_parquet.parquet'
+write_output_path_xlsx = 'file_parquet_xlsx.xlsx'
+
+read_parquet_write_xlsx = CaiPythonOperator(
+    task_id='read_parquet_write_xlsx',
+    method_id='read_parquet_write_xlsx',
+    code_artifact=python_code_artifact,
+    input_filenames_dict={"path": read_input_path_parquet},
+    output_filenames_dict={"path": write_output_path_xlsx},
+    method_args_dict={},
+    description='Description',
+    dag=dag
+)
+
+# Here the python pipeline READS a xlsx from [read_input_path_xlsx],
+# WRITES file to [write_output_path_json]
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_xlsx = 'file_parquet_xlsx.xlsx'
+write_output_path_json = 'file_xlsx_json.json'
+
+
+read_xlsx_write_json = CaiPythonOperator(
+    task_id='read_xlsx_write_json',
+    method_id='read_xlsx_write_json',
+    code_artifact=python_code_artifact,
+    input_filenames_dict={"path": read_input_path_xlsx},
+    output_filenames_dict={"path": write_output_path_json},
+    method_args_dict={},
+    description='Description',
+    dag=dag
+)
+
+# Here the python pipeline READS a json from [read_input_path_json],
+# WRITES file to [write_output_path_feather]
+
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_json = 'file_xlsx_json.json'
+write_output_path_feather = 'file_json_feather.feather'
+
+
+read_json_write_feather = CaiPythonOperator(
+    task_id='read_json_write_feather',
+    method_id='read_json_write_feather',
+    code_artifact=python_code_artifact,
+    input_filenames_dict={"path": read_input_path_json},
+    output_filenames_dict={"path": write_output_path_feather},
+    method_args_dict={},
+    description='Description',
+    dag=dag
+)
+
+# Here the python pipeline READS a feather from [read_input_path_feather],
+# WRITES file to [write_output_path_csv]
+
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_feather = 'file_json_feather.feather'
+write_output_path_csv = 'file_feather_csv.csv'
+
+
+read_feather_write_csv = CaiPythonOperator(
+    task_id='read_feather_write_csv',
+    method_id='read_feather_write_csv',
+    code_artifact=python_code_artifact,
+    input_filenames_dict={"path": read_input_path_feather},
+    output_filenames_dict={"path": write_output_path_csv},
+    method_args_dict={},
+    description='Description',
+    dag=dag
+)
+
+
+read_csv_write_tsv >> read_tsv_write_parquet >> read_parquet_write_xlsx >> read_xlsx_write_json >> read_json_write_feather >> read_feather_write_csv
+</code>
+</pre>
+<li>
+  Trigger the Pipeline.
+</li>
+<li>
+  This pipeline will interconvert one file format to other and store all outputs in s3.
+</li>
+</ul>
+</section>
+
 <section id="k8pythonoperator">
 <h3><strong>K8PythonOperator</strong><a class="headerlink" href="#k8pythonoperator" title="Permalink to this heading">#</a></h3>
 <p>Use the K8PythonOperator to execute Python Code over a new Kubernetes Pod.</p>
@@ -526,6 +789,179 @@ task = CaiK8PySparkOperator(
 </pre>
 </section>
 </section>
+
+<section id="example-caiiosupport-pyspark">
+  <h4><em>Example Using CaiIOSupport</em><a class="headerlink" href="#examplecaiiosupportpyspark" title="Permalink to this heading">#</a></h4>
+
+  <blockquote>
+    <div><a class="reference internal image-reference" href="_images/caiiosupport_pyspark_test.gif"><img
+          alt="_images/caiiosupport_pyspark_test.gif" src="_images/caiiosupport_pyspark_test.gif"
+          style="width: 7.74479in; height: 3.53585in;" /></a>
+    </div>
+  </blockquote>
+<p>
+  This is a sample Pipeline which reads files as a PySpark dataframe from s3 and writes PySpark dataframes to s3 in specified file formats.
+</p>
+<p>
+  The file formats supported are ["csv", "parquet", "json"]
+</p>
+<p>
+  Steps to run the sample pipeline are as follows:
+</p>
+<ul>
+  <li>
+    Copy following main.py in notebook as a .py/ipynb file.
+  </li>
+  <h5><em>Main file for the Code Artifact</em><a class="headerlink" href="#mainpysparkoperator" title="Permalink to this heading">#</a></h5>
+<pre><code>
+# Pyspark code-artifact example which can be used for operations : READ, WRITE, MOVE
+import sys
+from cai_utils.utils import CaiIOSupport  ### Do not modify
+
+def processDF(input_df):
+    """
+    Process the input dataframe generated from the csv.
+    """
+    return input_df
+
+
+def main():
+    cai_io_support = CaiIOSupport()  ### Do not modify
+    arg = cai_io_support.parse_args(sys.argv[1:])  ### Do not modify
+        
+    if arg["method_id"] == "read_csv_write_parquet_pyspark":
+        input_df_from_csv = cai_io_support.read_s3_file_as_pyspark_dataframe(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_csv)
+        cai_io_support.write_pyspark_dataframe_file_to_s3(arg["output_path"], output_df)
+        
+    if arg["method_id"] == "read_parquet_write_json_pyspark":
+        input_df_from_parquet = cai_io_support.read_s3_file_as_pyspark_dataframe(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_parquet)
+        cai_io_support.write_pyspark_dataframe_file_to_s3(arg["output_path"], output_df)
+        
+    if arg["method_id"] == "read_json_write_csv_pyspark":
+        input_df_from_json = cai_io_support.read_s3_file_as_pyspark_dataframe(arg["input_path"])
+        output_df = processDF(input_df=input_df_from_json)
+        cai_io_support.write_pyspark_dataframe_file_to_s3(arg["output_path"], output_df)
+    
+
+if __name__ == "__main__":
+    main()
+</code></pre>
+<li>
+  Right click on the ipynb/py file and upload it to pipelines as a code artifact. Make sure to include main.py.ß
+</li>
+<li>
+  Specify the code artifact and the main.py name in the sample pipeline code given below.
+</li>
+
+<h5><em>Pipeline Code</em><a class="headerlink" href="#pipelinepythonoperator" title="Permalink to this heading">#</a></h5>
+
+<pre>
+  <code>
+from cai_k8_pyspark_plugin import CaiK8PySparkOperator
+from cai_dag import CaiDAG
+from datetime import datetime
+
+default_args = {
+    'depends_on_past': False,
+    'start_date': datetime(2022, 8, 5),
+    'retries': 0,
+}
+
+dag = CaiDAG(
+    default_args=default_args,
+    schedule_interval=None,
+)
+
+# Here the pyspark pipeline READS a csv from [read_input_path_csv],
+# WRITES file to [write_output_path_parquet]
+
+pyspark_code_artifact = ['pyspark_test-1.0.0-py3.8.egg', 'pyspark_test-1.0.0-py3.8__main__.py']
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_csv = 'file_feather_csv.csv'
+write_output_path_parquet = 'file_csv_parquet_pyspark.parquet'
+
+
+read_csv_write_parquet_pyspark = CaiK8PySparkOperator(
+    namespace='isc-minerva-swb-dscw-spark-jobs',
+    in_cluster=True,
+    get_logs=True,
+    trigger_rule="all_done",
+    name='csv_par',
+    task_id='read_csv_write_parquet_pyspark',
+    app_name='test',
+    method_id='read_csv_write_parquet_pyspark',
+    method_args_dict={},
+    input_filenames_dict={"path": read_input_path_csv},
+    output_filenames_dict={"path": write_output_path_parquet},
+    code_artifact=pyspark_code_artifact,
+    dag=dag
+)
+
+
+# Here the pyspark pipeline READS a parquet from [read_input_path_parquet],
+# WRITES file to [write_output_path_json]
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_parquet = 'file_csv_parquet_pyspark.parquet'
+write_output_path_json = 'file_parquet_json_pyspark.json'
+
+
+read_parquet_write_json_pyspark = CaiK8PySparkOperator(
+    namespace='isc-minerva-swb-dscw-spark-jobs',
+    in_cluster=True,
+    get_logs=True,
+    trigger_rule="all_done",
+    name='par_json',
+    task_id='read_parquet_write_json_pyspark',
+    app_name='test',
+    method_id='read_parquet_write_json_pyspark',
+    method_args_dict={},
+    input_filenames_dict={"path": read_input_path_parquet},
+    output_filenames_dict={"path": write_output_path_json},
+    code_artifact=pyspark_code_artifact,
+    dag=dag
+)
+
+# Here the pyspark pipeline READS a json from [read_input_path_json],
+# WRITES file to [write_output_path_csv]
+
+## Paths are relative to the s3_bucket and s3_base_path
+read_input_path_json = 'file_parquet_json_pyspark.json'
+write_output_path_csv = 'file_json_csv_pyspark.csv'
+
+
+read_json_write_csv_pyspark = CaiK8PySparkOperator(
+    namespace='isc-minerva-swb-dscw-spark-jobs',
+    in_cluster=True,
+    get_logs=True,
+    trigger_rule="all_done",
+    name='par_json',
+    task_id='read_json_write_csv_pyspark',
+    app_name='test',
+    method_id='read_json_write_csv_pyspark',
+    method_args_dict={},
+    input_filenames_dict={"path": read_input_path_json},
+    output_filenames_dict={"path": write_output_path_csv},
+    code_artifact=pyspark_code_artifact,
+    dag=dag
+)
+
+read_csv_write_parquet_pyspark >> read_parquet_write_json_pyspark >> read_json_write_csv_pyspark
+</code>
+</pre>
+<li>
+  Trigger the Pipeline.
+</li>
+<li>
+  This pipeline will interconvert one file format to other and store all outputs in s3.
+</li>
+</ul>
+</section>
+
+
 <section id="bashoperator">
 <h3><strong>BashOperator</strong><a class="headerlink" href="#bashoperator" title="Permalink to this heading">#</a></h3>
 <p>Use the BashOperator to execute commands in a Bash shell.</p>
