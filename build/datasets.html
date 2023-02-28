@@ -350,7 +350,7 @@
                       style="width: 6.40104in; height: 1.03212in;" /></a>
                   <a class="reference internal image-reference" href="_images/image52.png"><img
                       alt="_images/image52.png" src="_images/image52.png"
-                      style="width: 5.76634in; height: 1.75868in;" /></a>
+                      style="width: 4.76634in; height: 1.75868in;" /></a>
                 </div>
               </blockquote>
               <ol class="loweralpha simple" start="3">
@@ -383,9 +383,13 @@
                 </li>
               </ol>
               <blockquote>
+                <pre style="font-size: 12px;overflow: auto;">
+dataset.add_files(path='./my_dataset', wildcard=None, dataset_path=None) # local path of files to be uploaded
+dataset.upload()
+                </pre>
                 <div><a class="reference internal image-reference" href="_images/image58.png"><img
                       alt="_images/image58.png" src="_images/image58.png"
-                      style="width: 5.75521in; height: 3.43118in;" /></a>
+                      style="width: 5.66827in; height: 2.34688in;" /></a>
                 </div>
               </blockquote>
               <ol class="loweralpha simple" start="2">
@@ -436,7 +440,8 @@
               <blockquote>
                 <pre style="font-size: 12px;overflow: auto;">
 dataset = Dataset.get(dataset_id="c6b147a022274092bc3e1b75f5f09d7a") # get ID from GUI
-dataset_files_path = dataset.useDataset() # dataset_files_path is the local path of the downloaded dataset.
+local_read_only = dataset.get_local_copy() # Gets read-only copy of dataset to local cache. Path returned in local_read_only.
+local_mutable = dataset.get_mutable_local_copy(path = '') # Gets writable copy of dataset to path specified. Target folder returned in local_mutable.
                 </pre>
               </blockquote>
               <ol class="arabic simple" start="4">
@@ -453,7 +458,8 @@ dataset_files_path = dataset.useDataset() # dataset_files_path is the local path
               </ol>
               <blockquote>
                 <div><a class="reference internal image-reference" href="_images/image77.png"><img
-                      alt="_images/image77.png" src="_images/archive_datasets.png" /></a>
+                      alt="_images/image77.png" src="_images/archive_datasets.png"
+                      style="width: 3.38021in; height: 3.38021in;" /></a>
                 </div>
               </blockquote>
               <ol class="arabic simple" start="5">
