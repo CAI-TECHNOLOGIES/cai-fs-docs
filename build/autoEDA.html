@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="API Collections (Auto API Builder)" href="apiCollection.html" /><link rel="prev" title="Notebooks" href="notebooks.html" />
 
     <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
-        <title>Auto EDA (Exploratory Data Analysis) - DSCW Platform Technical Overview &amp; User Guide</title>
+        <title>Auto EDA (Exploratory Data Analysis) - CAI Platform Technical Overview &amp; User Guide</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
@@ -231,36 +231,60 @@ to check assumptions with the help of statistical summaries and
 graphical representations.</p>
 <section id="overview">
 <span id="overview-2"></span><h2><strong>Overview</strong><a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>Auto EDA as a complete application is written with Scala, Python for the
+<p>Auto EDA as a complete application is written with Spark, Python for the
 backend, and Apache Echarts for the front end. It consists of 2 major
 functionalities</p>
 <ul class="simple">
 <li><p>Generate EDA analysis on a single data file/source</p></li>
 <li><p>Generate Cross-File EDA analysis across two data files/sources</p></li>
 </ul>
-<p>The application has two major pages :</p>
+<p>The application requires access to 4 major pages (2 for config, 2 for run):</p>
 <ul class="simple">
-<li><p>EDA sources (Menu ⇒ Developer ⇒ Exploratory Data Analysis)</p></li>
-<li><p>Pipelines - Run and Status (Menu ⇒ Pipelines)</p></li>
+  <li><p><strong>Code Artifact</strong> (Side-left Panel Menu ⇒ Pipelines ⇒)</p></li>
+  <li><p><strong>Spark Configuration & Dependency</strong> (Side-left Panel Menu ⇒ Cluster Config Groups ⇒)</p></li>
 </ul>
+<ul>
+  <li><p><strong>Auto EDA</strong> (Side-left Panel Menu ⇒ Developer ⇒)</p></li>
+  <li><p><strong>Manage & Track</strong> (Side-left Panel Menu ⇒ Pipelines =>)</p></li>
+</ul>
+</section>
+<section id="set-up">
+  <h2><strong>Set Up Configurations</strong><a class="headerlink" href="#set-up" title="Permalink to this heading">#</a></h2>
+  <p>There are 2 configurations needed for <strong>Python</strong> and <strong>Spark</strong> set-ups.</p>
+  <p>For PYTHON set-up</p>
+  <ul class="simple">
+    <li><p>Upload python egg file (<i>cai_eda_python_py_op-1.0.0-py3.8.egg</i>) in <strong>Code-Artifact</strong> page</p></li>
+    <li><p>Not list Spark Kubernetes Container image in <strong>Spark Configuration</strong> page</p></li>
+  </ul>
+  <p>For SPARK set-up</p>
+  <ul class="simple">
+    <li><p>Upload scala jar file (<i>cai-eda.jar</i>) in <strong>Code-Artifact</strong> page</p></li>
+    <li><p>Upload pyspark main file (<i>__main__.py</i>) in <strong>Code-Artifact</strong> page</p></li>
+    <li><p>Upload pyspark egg file (<i>cai_eda_pyspark-1.0.0-py3.8.egg</i>) in <strong>Spark Dependency</strong> page</p></li>
+    <li><p>List Spark Kubernetes Container image in <strong>Spark Configuration</strong> page</p></li>
+    <li><p>Select pyspark egg file in Py-files dropdown <strong>Spark Configuration</strong> page</p></li>
+  </ul>
 </section>
 <section id="how-to-use">
 <h2><strong>How To Use?</strong><a class="headerlink" href="#how-to-use" title="Permalink to this heading">#</a></h2>
-<p>Assuming the Spark Cluster configuration setup for the EDA application
-has been confirmed, the general steps a user, starting at the EDA
-sources page, can follow are:</p>
-<p>STEP 1: The user needs to click the button <strong>Upload Data</strong> to process,
-validate and then accept an approved S3A Data lake source. This source
-then gets listed in a searchable Sources table below the button.</p>
+<p>Assuming the required configuration setup for the EDA application
+has been applied, the general steps a user, starting at the <strong>Auto EDA</strong> page can follow are:</p>
+<p>STEP 1: After clicking <strong>Upload Data</strong> button,
+  user should input relative (to Admin-set Base path) S3A Data lake source.
+  This source is validated and accepted as a source in EDA sources table.</p>
 <p>Conditions for validating the Data source’s connection URL are :</p>
 <ul class="simple">
-<li><p>It should start with “s3a://”</p></li>
-<li><dl class="simple">
-<dt>It should contain AlphaNumeric ( including special characters such as</dt><dd><p>! - _ . * ‘ ( ) ) characters</p>
-</dd>
-</dl>
+<li>
+  <dl class="simple">
+    <dt>It should contain AlphaNumeric ( including special characters such as</dt>
+    <dd>
+      <p>! - _ . * ‘ ( ) ) characters</p>
+    </dd>
+  </dl>
 </li>
-<li><p>File extensions can be csv, tsv, parquet, json</p></li>
+<li><p>Accepted extensions are: csv, tsv, parquet, json</p></li>
+  <li><p>File path should exist in Admin-set Base folder</p></li>
+  <li><p>File should have required READ permissions</p></li>
 </ul>
 <a class="reference internal image-reference" href="_images/image34.gif"><img alt="_images/image34.gif" src="_images/image34.gif" style="width: 5.69271in; height: 2.76425in;" /></a>
 <p>STEP 2 (For the single data source EDA analysis) : The user clicks on
@@ -269,7 +293,7 @@ Visualizations</strong> button to be active. Clicking the button, the User is
 shown the screen for customization of the Analysis based on</p>
 <ul class="simple">
 <li><dl class="simple">
-<dt><strong>Statistical Visualizations</strong>: choosing charts/plots across</dt><dd><p>different sections (Preliminary, Univariate, Bivariate, and
+<dt><strong>Statistical Visualizations</strong>: choosing charts/plots across different sections </dt><dd><p>(Univariate, Bivariate, and
 Multivariate) for statistical analysis-based visualizations</p>
 </dd>
 </dl>
@@ -280,14 +304,20 @@ Multivariate) for statistical analysis-based visualizations</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><strong>Null Method</strong>: method to tackle the Null cells in the original</dt><dd><p>Dataset (Skip Cells or Interpolate with Mean and Mode).</p>
+  <dt><strong>Analysis</strong>: methods to clean the Original dataset</dt><dd><p>(Apply Stemming, Remove Numerics in Alpha numeric text,
+  Remove Punctuations & Contradictions, Remove Stopwords).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Null Method</strong>: method to tackle the Null cells in the Original dataset</dt><dd><p>(Skip Cells, Interpolate with Mean and Mode).</p>
 </dd>
 </dl>
 </li>
 </ul>
 <p>When the customization form is submitted, a Pipeline with an appropriate
-flash message is triggered in DSCW-Workbench. It later produces a
-composite HTML in the <strong>Processed Outputs</strong> view on the EDA sources
+flash message is triggered in Workbench. It later produces a
+  composite HTML in the <strong>Processed Outputs</strong> view on the <strong>Auto-EDA</strong>
 page. The composite HTML (consisting of the timestamp of the trigger)
 has a view and download action available.</p>
 <a class="reference internal image-reference" href="_images/image27.gif"><img alt="_images/image27.gif" src="_images/image27.gif" style="width: 5.71045in; height: 3.19271in;" /></a>
@@ -295,8 +325,8 @@ has a view and download action available.</p>
 User clicks on two datasets in the Sources table, the button <strong>Generate
 Cross-File Visualizations</strong> is active. Clicking the button, a Python
 Pipeline, with an appropriate flash message, is triggered in
-DSCW-Workbench. The composite HTML output is later visible in the
-<strong>Processed Outputs</strong> view on the EDA sources page. Similarly, this
+Workbench. The composite HTML output is later visible in the
+  <strong>Processed Outputs</strong> view on the <strong>Auto-EDA</strong> page. Similarly, this
 output also has a view and download action available.</p>
 <a class="reference internal image-reference" href="_images/image35.gif"><img alt="_images/image35.gif" src="_images/image35.gif" style="width: 6.07892in; height: 2.77604in;" /></a>
 <p>If Pipeline run breaks (look out for error message on Pipeline feature
