@@ -521,7 +521,7 @@ experiment.close()
               <blockquote>
                 <div><a class="reference internal image-reference" href="_images/image78.png"><img
                       alt="_images/image78.png" src="_images/image78.png"
-                      style="width: 6.43229in; height: 0.49626in;" /></a>
+                      style="width: 6.43229in; height: 0.20626in;" /></a>
                 </div>
               </blockquote>
               <ol class="arabic simple" start="3">
@@ -531,7 +531,6 @@ experiment.close()
               </ol>
               <blockquote>
                 <pre style="font-size: 12px;overflow: auto;">
-from caiml import InputModel
 input_model = InputModel.import_model(weights_url="https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5x6.pt", # A valid URL for the weights file. For a local file user file://
                             name="Sample Model", # Optional
                             framework=None, # Optional, framework to be used like PyTorch
@@ -550,7 +549,6 @@ input_model = InputModel.import_model(weights_url="https://github.com/ultralytic
 
               <blockquote>
                 <pre style="font-size: 12px;overflow: auto;">
-from caiml import OutputModel
 output_model.update_weights(weights_filename='', # Either add a local weights file here
                             registered_uri='https://github.com/ultralytics/yolov5/releases/download/v6.2/yolov5x6.pt') # or add a valid URL of the weights file here
                 </pre>
@@ -565,7 +563,6 @@ output_model.update_weights(weights_filename='', # Either add a local weights fi
 
               <blockquote>
                 <pre style="font-size: 12px;overflow: auto;">
-from caiml import InputModel, OutputModel
 model.set_metadata("epochs", 20) # model can be an instance of either of OutputModel/InputModel class  
                 </pre>
               </blockquote>
@@ -581,7 +578,6 @@ model.set_metadata("epochs", 20) # model can be an instance of either of OutputM
 
               <blockquote>
                 <pre style="font-size: 12px;overflow: auto;">
-from caiml import InputModel, OutputModel
 model.publish()               </pre>
               </blockquote>
               <ol class="arabic simple" start="7">
@@ -590,7 +586,7 @@ model.publish()               </pre>
                 </li>
               </ol>
               <a class="reference internal image-reference" href="_images/image18.png"><img alt="_images/image18.png"
-                  src="_images/image18.png" style="width: 6.42466in; height: 0.6059in;" /></a>
+                  src="_images/image18.png" style="width: 6.42466in; height: 0.2059in;" /></a>
               <p>Similarly, other functionalities can be
                 implemented and for each of them code snippets can be found in the
                 notebooks under code snippet explorer.</p>
