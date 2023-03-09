@@ -1,270 +1,386 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Additional Admin Features" href="admin.html" /><link rel="prev" title="Configurations" href="configuration.html" />
 
-    <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
-        <title>Pipelines Developer Reference - DSCW Platform Technical Overview &amp; User Guide</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Additional Admin Features" href="admin.html" />
+  <link rel="prev" title="Configurations" href="configuration.html" />
+
+  <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
+  <title>Pipelines Developer Reference - DSCW Platform Technical Overview &amp; User Guide</title>
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css"
+    href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+  <link rel="stylesheet" type="text/css"
+    href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 
 
-<style>
-  body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  
-  }
-  @media not print {
-    body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
+
+  <style>
+    body {
+      --color-code-background: #f8f8f8;
+      --color-code-foreground: black;
+
     }
-    @media (prefers-color-scheme: dark) {
-      body:not([data-theme="light"]) {
+
+    @media not print {
+      body[data-theme="dark"] {
         --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
+        --color-code-foreground: #d0d0d0;
+
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body:not([data-theme="light"]) {
+          --color-code-background: #202020;
+          --color-code-foreground: #d0d0d0;
+
+        }
       }
     }
-  }
-</style></head>
-  <body>
-    
-    <script>
-      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
-    </script>
-    
+  </style>
+</head>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="svg-toc" viewBox="0 0 24 24">
-    <title>Contents</title>
-    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
-      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
-    </svg>
-  </symbol>
-  <symbol id="svg-menu" viewBox="0 0 24 24">
-    <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
-    <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </symbol>
-  <symbol id="svg-sun" viewBox="0 0 24 24">
-    <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-moon" viewBox="0 0 24 24">
-    <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-    </svg>
-  </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
-    </svg>
-  </symbol>
-</svg>
+<body>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+  <script>
+    document.body.dataset.theme = localStorage.getItem("chakra-ui-color-mode") || "light";
+  </script>
 
 
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-toc" viewBox="0 0 24 24">
+      <title>Contents</title>
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+        <path
+          d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z" />
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-sun" viewBox="0 0 24 24">
+      <title>Light mode</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-moon" viewBox="0 0 24 24">
+      <title>Dark mode</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+      </svg>
+    </symbol>
+    <symbol id="svg-sun-half" viewBox="0 0 24 24">
+      <title>Auto light/dark mode</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="M13 12h5" />
+        <path d="M13 15h4" />
+        <path d="M13 18h1" />
+        <path d="M13 9h4" />
+        <path d="M13 6h1" />
+      </svg>
+    </symbol>
+  </svg>
 
-<div class="page">
-  <header class="mobile-header">
-    <div class="header-left">
-      <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
-      </label>
-    </div>
-    <div class="header-center">
-      <a href="index.html"><div class="brand"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></div></a>
-    </div>
-    <div class="header-right">
-      <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
-          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
-          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
-        </button>
+  <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+  <input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+  <label class="overlay sidebar-overlay" for="__navigation">
+    <div class="visually-hidden">Hide navigation sidebar</div>
+  </label>
+  <label class="overlay toc-overlay" for="__toc">
+    <div class="visually-hidden">Hide table of contents sidebar</div>
+  </label>
+
+
+
+  <div class="page">
+    <header class="mobile-header">
+      <div class="header-left">
+        <label class="nav-overlay-icon" for="__navigation">
+          <div class="visually-hidden">Toggle site navigation sidebar</div>
+          <i class="icon"><svg>
+              <use href="#svg-menu"></use>
+            </svg></i>
+        </label>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-      </label>
-    </div>
-  </header>
-  <aside class="sidebar-drawer">
-    <div class="sidebar-container">
-      
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
-  
-  
-  <span class="sidebar-brand-text"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></span>
-  
-</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
-  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
-  <input type="hidden" name="check_keywords" value="yes">
-  <input type="hidden" name="area" value="default">
-</form>
-<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">ARCHITECTURE</a></li>
-</ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="project.html">AI PLATFORM USER GUIDE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="pipelines.html"><strong>Pipelines</strong></a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="developer.html"><strong>Developer</strong></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="dataLake.html"><strong>Data Lake Explorer</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dbExplorer.html"><strong>Database Explorer</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="datasets.html"><strong>Datasets</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="model%26Exp.html"><strong>Models and Experiments</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="notebooks.html"><strong>Notebooks</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autoEDA.html"><strong>Auto EDA (Exploratory Data Analysis)</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="apiCollection.html"><strong>API Collections (Auto API Builder)</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="projectServices.html"><strong>Project Services</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="monitor.html"><strong>Monitor</strong></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="centralisedLogs.html"><strong>Centralised Logs</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="observability.html"><strong>Observability</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="metricDash.html"><strong>Metrics Dashboard</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="distributedTrace.html"><strong>Distributed Trace</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html"><strong>Configurations</strong></a></li>
-</ul>
-</li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">appendix and references</span></p>
-<ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Pipelines Developer Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="admin.html">Additional Admin Features</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQs</a></li>
-</ul>
-
-</div>
-</div>
-
-      </div>
-      
-    </div>
-  </aside>
-  <div class="main">
-    <div class="content">
-      <div class="article-container">
-        <a href="#" class="back-to-top muted-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
-          </svg>
-          <span>Back to top</span>
-        </a>
-        <div class="content-icon-container">
-          
-<div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
-              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
-              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
-            </button>
+      <div class="header-center">
+        <a href="index.html">
+          <div class="brand"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-          </label>
+        </a>
+      </div>
+      <div class="header-right">
+        <!-- <div class="theme-toggle-container theme-toggle-header">
+          <button class="theme-toggle">
+            <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <svg class="theme-icon-when-auto">
+              <use href="#svg-sun-half"></use>
+            </svg>
+            <svg class="theme-icon-when-dark">
+              <use href="#svg-moon"></use>
+            </svg>
+            <svg class="theme-icon-when-light">
+              <use href="#svg-sun"></use>
+            </svg>
+          </button>
+        </div> -->
+        <label class="toc-overlay-icon toc-header-icon" for="__toc">
+          <div class="visually-hidden">Toggle table of contents sidebar</div>
+          <i class="icon"><svg>
+              <use href="#svg-toc"></use>
+            </svg></i>
+        </label>
+      </div>
+    </header>
+    <aside class="sidebar-drawer">
+      <div class="sidebar-container">
+
+        <div class="sidebar-sticky">
+          <form class="sidebar-search-container" method="get" action="search.html" role="search">
+            <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+            <input type="hidden" name="check_keywords" value="yes">
+            <input type="hidden" name="area" value="default">
+          </form>
+          <div id="searchbox"></div>
+          <div class="sidebar-scroll">
+            <div class="sidebar-tree">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">HOME</a></li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="architecture.html">ARCHITECTURE</a></li>
+              </ul>
+              <ul>
+                <li class="toctree-l1 has-children"><a class="reference internal" href="project.html">AI PLATFORM USER
+                    GUIDE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1"
+                    role="switch" type="checkbox" /><label for="toctree-checkbox-1">
+                    <div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg>
+                        <use href="#svg-arrow-right"></use>
+                      </svg></i>
+                  </label>
+                  <ul>
+                    <li class="toctree-l2"><a class="reference internal"
+                        href="pipelines.html"><strong>Pipelines</strong></a></li>
+                    <li class="toctree-l2 has-children"><a class="reference internal"
+                        href="developer.html"><strong>Developer</strong></a><input class="toctree-checkbox"
+                        id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox" /><label
+                        for="toctree-checkbox-2">
+                        <div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg>
+                            <use href="#svg-arrow-right"></use>
+                          </svg></i>
+                      </label>
+                      <ul>
+                        <li class="toctree-l3"><a class="reference internal" href="dataLake.html"><strong>Data Lake
+                              Explorer</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="dbExplorer.html"><strong>Database
+                              Explorer</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="datasets.html"><strong>Datasets</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="model%26Exp.html"><strong>Models and
+                              Experiments</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="notebooks.html"><strong>Notebooks</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="autoEDA.html"><strong>Auto EDA
+                              (Exploratory Data Analysis)</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="apiCollection.html"><strong>API
+                              Collections (Auto API Builder)</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="projectServices.html"><strong>Project
+                              Services</strong></a></li>
+                      </ul>
+                    </li>
+                    <li class="toctree-l2 has-children"><a class="reference internal"
+                        href="monitor.html"><strong>Monitor</strong></a><input class="toctree-checkbox"
+                        id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox" /><label
+                        for="toctree-checkbox-3">
+                        <div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg>
+                            <use href="#svg-arrow-right"></use>
+                          </svg></i>
+                      </label>
+                      <ul>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="centralisedLogs.html"><strong>Centralised Logs</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="observability.html"><strong>Observability</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="metricDash.html"><strong>Metrics
+                              Dashboard</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="distributedTrace.html"><strong>Distributed Trace</strong></a></li>
+                      </ul>
+                    </li>
+                    <li class="toctree-l2"><a class="reference internal"
+                        href="configuration.html"><strong>Configurations</strong></a></li>
+                  </ul>
+                </li>
+              </ul>
+              <p class="caption" role="heading"><span class="caption-text">appendix and references</span></p>
+              <ul class="current">
+                <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Pipelines
+                    Developer Reference</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="admin.html">Additional Admin Features</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQs</a></li>
+              </ul>
+
+            </div>
+          </div>
+
         </div>
-        <article role="main">
-          <span class="target" id="section-10"></span><section id="pipelines-developer-reference">
-<h1>Pipelines Developer Reference<a class="headerlink" href="#pipelines-developer-reference" title="Permalink to this heading">#</a></h1>
-<p>A pipeline is defined in a Python script, which represents its structure
-(tasks and their dependencies) as code. Pipeline tasks are created by
-instantiating as operator class. There are different types of operators
-available as explained in the list below. These operators are used to
-define a single task of the pipeline.</p>
-<section id="operators">
-<h2><strong>Operators</strong><a class="headerlink" href="#operators" title="Permalink to this heading">#</a></h2>
-<section id="pythonoperator">
-<h3><strong>PythonOperator</strong><a class="headerlink" href="#pythonoperator" title="Permalink to this heading">#</a></h3>
-<p>Use the PythonOperator to execute Python Code..</p>
-<section id="basic-parameters">
-<h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><dl class="simple">
-<dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
-<li><dl class="simple"><dt>task_id: str</dt><p>- Task ID for the task (used in Dag context)</p></dl></li>
-<li><dl class="simple"><dt>code_artifact: str</dt><p>- Code Artifact to be used.</p></dl></li>
-<li><dl class="simple"><dt>method_id: str</dt><p> - Method ID for the specific Task (used in Code Artifact codebase context)</p></dl></li>
-<!-- <li><dl class="simple"><dt>input_base_dir_path: Optional[str]</dt><p>- Base directory path for input files. This has to be a string</p></dl></li> -->
-<li><dl class="simple"><dt>input_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary
-format.</p></dl></li>
-<!-- <li><dl class="simple">
+
+      </div>
+    </aside>
+    <div class="main">
+      <div class="content">
+        <div class="article-container">
+          <a href="#" class="back-to-top muted-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+            </svg>
+            <span>Back to top</span>
+          </a>
+          <div class="content-icon-container">
+
+            <div class="theme-toggle-container theme-toggle-content">
+              <button class="theme-toggle">
+                <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+                <svg class="theme-icon-when-auto">
+                  <use href="#svg-sun-half"></use>
+                </svg>
+                <svg class="theme-icon-when-dark">
+                  <use href="#svg-moon"></use>
+                </svg>
+                <svg class="theme-icon-when-light">
+                  <use href="#svg-sun"></use>
+                </svg>
+              </button>
+            </div>
+            <label class="toc-overlay-icon toc-content-icon" for="__toc">
+              <div class="visually-hidden">Toggle table of contents sidebar</div>
+              <i class="icon"><svg>
+                  <use href="#svg-toc"></use>
+                </svg></i>
+            </label>
+          </div>
+          <article role="main">
+            <span class="target" id="section-10"></span>
+            <section id="pipelines-developer-reference">
+              <h1>Pipelines Developer Reference<a class="headerlink" href="#pipelines-developer-reference"
+                  title="Permalink to this heading">#</a></h1>
+              <p>A pipeline is defined in a Python script, which represents its structure
+                (tasks and their dependencies) as code. Pipeline tasks are created by
+                instantiating as operator class. There are different types of operators
+                available as explained in the list below. These operators are used to
+                define a single task of the pipeline.</p>
+              <section id="operators">
+                <h2><strong>Operators</strong><a class="headerlink" href="#operators"
+                    title="Permalink to this heading">#</a></h2>
+                <section id="pythonoperator">
+                  <h3><strong>PythonOperator</strong><a class="headerlink" href="#pythonoperator"
+                      title="Permalink to this heading">#</a></h3>
+                  <p>Use the PythonOperator to execute Python Code..</p>
+                  <section id="basic-parameters">
+                    <h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters"
+                        title="Permalink to this heading">#</a></h4>
+                    <ul class="simple">
+                      <li>
+                        <dl class="simple">
+                          <dt>dag: CaiDAG</dt>
+                          <p>- Object of the CaiDAG Class</p>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl class="simple">
+                          <dt>task_id: str</dt>
+                          <p>- Task ID for the task (used in Dag context)</p>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl class="simple">
+                          <dt>code_artifact: str</dt>
+                          <p>- Code Artifact to be used.</p>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl class="simple">
+                          <dt>method_id: str</dt>
+                          <p> - Method ID for the specific Task (used in Code Artifact codebase context)</p>
+                        </dl>
+                      </li>
+                      <!-- <li><dl class="simple"><dt>input_base_dir_path: Optional[str]</dt><p>- Base directory path for input files. This has to be a string</p></dl></li> -->
+                      <li>
+                        <dl class="simple">
+                          <dt>input_filenames_dict: Optional[Dict]</dt>
+                          <p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in
+                            configurations. To be passed in dictionary
+                            format.</p>
+                        </dl>
+                      </li>
+                      <!-- <li><dl class="simple">
 <dt>output_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>output files. This has to be a string</p>
 </dd>
 </dl>
 </li> -->
-<li><dl class="simple"><dt>output_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
-</ul>
-<h4><em>Advanced</em> <em>Parameters</em></h4>
-<ul class="simple">
-  <li><dl class="simple"><dt>method_args_dict: Optional[Dict]</dt><p>- Arguments required for main method of the main class. To be passed in dictionary format and
-very customizable.</p></dl></li>
-</ul>
-</section>
-<section id="dag-format">
-<h4><em>Dag format</em><a class="headerlink" href="#dag-format" title="Permalink to this heading">#</a></h4>
-<pre>
+                      <li>
+                        <dl class="simple">
+                          <dt>output_filenames_dict: Optional[Dict]</dt>
+                          <p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in
+                            configurations. To be passed in dictionary format.</p>
+                        </dl>
+                      </li>
+                    </ul>
+                    <h4><em>Advanced</em> <em>Parameters</em></h4>
+                    <ul class="simple">
+                      <li>
+                        <dl class="simple">
+                          <dt>method_args_dict: Optional[Dict]</dt>
+                          <p>- Arguments required for main method of the main class. To be passed in dictionary format
+                            and
+                            very customizable.</p>
+                        </dl>
+                      </li>
+                    </ul>
+                  </section>
+                  <section id="dag-format">
+                    <h4><em>Dag format</em><a class="headerlink" href="#dag-format"
+                        title="Permalink to this heading">#</a></h4>
+                    <pre>
   <code>
 from cai_python_plugin import CaiPythonOperator
 from cai_dag import CaiDAG
@@ -283,10 +399,11 @@ task = CaiPythonOperator(
 )
   </code>
 </pre>
-</section>
-<section id="example">
-<h4><em>Example</em><a class="headerlink" href="#example" title="Permalink to this heading">#</a></h4>
-<pre><code>
+                  </section>
+                  <section id="example">
+                    <h4><em>Example</em><a class="headerlink" href="#example" title="Permalink to this heading">#</a>
+                    </h4>
+                    <pre><code>
 from cai_python_plugin import CaiPythonOperator
 from cai_dag import CaiDAG
 
@@ -316,31 +433,35 @@ ExamplePythonAnalysis = CaiPythonOperator(
   dag=dag
 )
 </code></pre>
-</section>
-<section id="example-caiiosupport">
-  <h4><em>Example Using CaiIOSupport</em><a class="headerlink" href="#examplecaiiosupport" title="Permalink to this heading">#</a></h4>
+                  </section>
+                  <section id="example-caiiosupport">
+                    <h4><em>Example Using CaiIOSupport</em><a class="headerlink" href="#examplecaiiosupport"
+                        title="Permalink to this heading">#</a></h4>
 
-  <blockquote>
-    <div><a class="reference internal image-reference" href="_images/caiiosupport_python_test.gif"><img
-          alt="_images/caiiosupport_python_test.gif" src="_images/caiiosupport_python_test.gif"
-          style="width: 7.74479in; height: 3.53585in;" /></a>
-    </div>
-  </blockquote>
-<p>
-  This is a sample Pipeline which reads files as a pandas dataframe from s3 and writes pandas dataframes to s3 in specified file formats.
-</p>
-<p>
-  The file formats supported are ["csv","tsv","parquet","xls","xlsx","json","feather"]
-</p>
-<p>
-  Steps to run the sample pipeline are as follows:
-</p>
-<ul>
-  <li>
-    Copy following main.py in notebook as a .py/ipynb file.
-  </li>
-  <h5><em>Main file for the Code Artifact</em><a class="headerlink" href="#mainpythonoperator" title="Permalink to this heading">#</a></h5>
-<pre><code>
+                    <blockquote>
+                      <div><a class="reference internal image-reference"
+                          href="_images/caiiosupport_python_test.gif"><img alt="_images/caiiosupport_python_test.gif"
+                            src="_images/caiiosupport_python_test.gif"
+                            style="width: 7.74479in; height: 3.53585in;" /></a>
+                      </div>
+                    </blockquote>
+                    <p>
+                      This is a sample Pipeline which reads files as a pandas dataframe from s3 and writes pandas
+                      dataframes to s3 in specified file formats.
+                    </p>
+                    <p>
+                      The file formats supported are ["csv","tsv","parquet","xls","xlsx","json","feather"]
+                    </p>
+                    <p>
+                      Steps to run the sample pipeline are as follows:
+                    </p>
+                    <ul>
+                      <li>
+                        Copy following main.py in notebook as a .py/ipynb file.
+                      </li>
+                      <h5><em>Main file for the Code Artifact</em><a class="headerlink" href="#mainpythonoperator"
+                          title="Permalink to this heading">#</a></h5>
+                      <pre><code>
 # Python code-artifact example which can be used for operations : READ, WRITE, MOVE
 import sys
 from cai_utils.utils import CaiIOSupport  ### Do not modify
@@ -417,18 +538,19 @@ def main():
 if __name__ == "__main__":
     main()
 </code></pre>
-<li>
-  Right click on the ipynb/py file and upload it to pipelines as a code artifact.
-</li>
-<li>
-  Specify the code artifact name in the sample pipeline code given below.
-</li>
-<li>
-  Make sure the input file is present in s3.
-</li>
-<h5><em>Pipeline Code</em><a class="headerlink" href="#pipelinepythonoperator" title="Permalink to this heading">#</a></h5>
+                      <li>
+                        Right click on the ipynb/py file and upload it to pipelines as a code artifact.
+                      </li>
+                      <li>
+                        Specify the code artifact name in the sample pipeline code given below.
+                      </li>
+                      <li>
+                        Make sure the input file is present in s3.
+                      </li>
+                      <h5><em>Pipeline Code</em><a class="headerlink" href="#pipelinepythonoperator"
+                          title="Permalink to this heading">#</a></h5>
 
-<pre>
+                      <pre>
   <code>
 # Python Example dag
 from cai_python_plugin import CaiPythonOperator
@@ -571,50 +693,120 @@ read_feather_write_csv = CaiPythonOperator(
 read_csv_write_tsv >> read_tsv_write_parquet >> read_parquet_write_xlsx >> read_xlsx_write_json >> read_json_write_feather >> read_feather_write_csv
 </code>
 </pre>
-<li>
-  Trigger the Pipeline.
-</li>
-<li>
-  This pipeline will interconvert one file format to other and store all outputs in s3.
-</li>
-</ul>
-</section>
+                      <li>
+                        Trigger the Pipeline.
+                      </li>
+                      <li>
+                        This pipeline will interconvert one file format to other and store all outputs in s3.
+                      </li>
+                    </ul>
+                  </section>
 
-<section id="k8pythonoperator">
-<h3><strong>K8PythonOperator</strong><a class="headerlink" href="#k8pythonoperator" title="Permalink to this heading">#</a></h3>
-<p>Use the K8PythonOperator to execute Python Code over a new Kubernetes Pod.</p>
-<section id="basic-parameters-1">
-<span id="id1"></span><h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters-1" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><dl class="simple"><dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
-<li><dl class="simple"><dt>task_id: str</dt><p>- Task ID for the task (used in Dag context)</p></dl></li>
-<li><dl class="simple"><dt>method_id: str</dt><p>- Method ID for the specific Task (used in Code Artifact codebase context)</p></dl></li>
-<li><dl class="simple"><dt>code_artifact: str</dt><p>- Code Artifact to be used.</p></dl></li>
-<li><dl class="simple"><dt>image: str</dt><p>- The python image to be used</p></dl></li>
-<li><dl class="simple"><dt>name: Optional[str]</dt><p>- name of the pod in which the task will run, will be used (plus a random suffix) to generate a pod id (DNS-1123
-subdomain, containing only [a-z0-9.-]).</p></dl></li>
-<!-- <li><dl class="simple"><dt>input_base_dir_path: Optional[str]</dt><p>- Base directory path for input files. This has to be a string</p></dl></li> -->
-<li><dl class="simple"><dt>input_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
-<!-- <li><dl class="simple">
+                  <section id="k8pythonoperator">
+                    <h3><strong>K8PythonOperator</strong><a class="headerlink" href="#k8pythonoperator"
+                        title="Permalink to this heading">#</a></h3>
+                    <p>Use the K8PythonOperator to execute Python Code over a new Kubernetes Pod.</p>
+                    <section id="basic-parameters-1">
+                      <span id="id1"></span>
+                      <h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters-1"
+                          title="Permalink to this heading">#</a></h4>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>dag: CaiDAG</dt>
+                            <p>- Object of the CaiDAG Class</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>task_id: str</dt>
+                            <p>- Task ID for the task (used in Dag context)</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>method_id: str</dt>
+                            <p>- Method ID for the specific Task (used in Code Artifact codebase context)</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>code_artifact: str</dt>
+                            <p>- Code Artifact to be used.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>image: str</dt>
+                            <p>- The python image to be used</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>name: Optional[str]</dt>
+                            <p>- name of the pod in which the task will run, will be used (plus a random suffix) to
+                              generate a pod id (DNS-1123
+                              subdomain, containing only [a-z0-9.-]).</p>
+                          </dl>
+                        </li>
+                        <!-- <li><dl class="simple"><dt>input_base_dir_path: Optional[str]</dt><p>- Base directory path for input files. This has to be a string</p></dl></li> -->
+                        <li>
+                          <dl class="simple">
+                            <dt>input_filenames_dict: Optional[Dict]</dt>
+                            <p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned
+                              in configurations. To be passed in dictionary format.</p>
+                          </dl>
+                        </li>
+                        <!-- <li><dl class="simple">
 <dt>output_base_dir_path: Optional[str], “” - Base directory path for</dt><dd><p>output files. This has to be a string</p>
 </dd>
 </dl>
 </li> -->
-<li><dl class="simple"><dt>output_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
-</ul>
-<p id="advanced-parameters-1"><em>Advanced</em> <em>Parameters</em></p>
-<ul class="simple">
-<li><dl class="simple"><dt>method_args_dict: Optional[Dict]</dt><p>- Arguments required for main method of the main class. To be passed in dictionary format and
-very customizable.</p></dl></li>
-<li><dl class="simple"><dt>config_group: Optional[str]</dt><p>- Name of the config_group to use. If not given, use default group specified in Cluster config</p></dl></li>
-<li><dl class="simple"><dt>namespace: Optional[str]</dt><p>- the namespace to run within kubernetes. If not given, default namespace</p></dl></li>
-<li><dl class="simple"><dt>get_logs: Optional[bool]</dt><p>- get the stdout of the container as logs of the tasks.</p></dl></li>
-</ul>
-</section>
-<section id="dag-format-1">
-<span id="id2"></span><h4><em>Dag format</em><a class="headerlink" href="#dag-format-1" title="Permalink to this heading">#</a></h4>
-<div class="line-block">
-<pre>
+                        <li>
+                          <dl class="simple">
+                            <dt>output_filenames_dict: Optional[Dict]</dt>
+                            <p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned
+                              in configurations. To be passed in dictionary format.</p>
+                          </dl>
+                        </li>
+                      </ul>
+                      <p id="advanced-parameters-1"><em>Advanced</em> <em>Parameters</em></p>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>method_args_dict: Optional[Dict]</dt>
+                            <p>- Arguments required for main method of the main class. To be passed in dictionary format
+                              and
+                              very customizable.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>config_group: Optional[str]</dt>
+                            <p>- Name of the config_group to use. If not given, use default group specified in Cluster
+                              config</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>namespace: Optional[str]</dt>
+                            <p>- the namespace to run within kubernetes. If not given, default namespace</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>get_logs: Optional[bool]</dt>
+                            <p>- get the stdout of the container as logs of the tasks.</p>
+                          </dl>
+                        </li>
+                      </ul>
+                    </section>
+                    <section id="dag-format-1">
+                      <span id="id2"></span>
+                      <h4><em>Dag format</em><a class="headerlink" href="#dag-format-1"
+                          title="Permalink to this heading">#</a></h4>
+                      <div class="line-block">
+                        <pre>
   <code>
 from cai_k8_python_plugin import CaiK8PythonOperator
 from cai_dag import CaiDAG
@@ -634,10 +826,11 @@ task = CaiK8PythonOperator(
 )
   </code>
 </pre>
-</section>
-<section id="examples">
-<h4><em>Examples</em><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h4>
-<pre>
+                    </section>
+                    <section id="examples">
+                      <h4><em>Examples</em><a class="headerlink" href="#examples"
+                          title="Permalink to this heading">#</a></h4>
+                      <pre>
   <code>
 from cai_k8_python_plugin import CaiK8PythonOperator
 from cai_dag import CaiDAG
@@ -674,60 +867,132 @@ task = CaiK8PythonOperator(
 )
   </code>
 </pre>
-</section>
-</section>
-<section id="k8pysparkoperator">
-<h3><strong>K8PySparkOperator</strong><a class="headerlink" href="#k8pysparkoperator" title="Permalink to this heading">#</a></h3>
-<p>Use the K8PySparkOperator to execute Pyspark Jobs over the Kubernetes
-cluster.</p>
-<section id="prerequisites">
-<h4><em>Prerequisites</em><a class="headerlink" href="#prerequisites" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Set the spark configuration appropriately. The important fields required are:</p>
-</dd>
-</dl>
-</li>
-</ul>
-<div class="line-block">
-<div class="line">[arguments]</div>
-<div class="line">master = &lt;Master of your Kubernetes Cluster&gt;</div>
-<div class="line">py-files = &lt;Upload py-files and egg files for PySpark in Spark
-Dependency and select here&gt;</div>
-<div class="line">deploy-mode = cluster</div>
-<div class="line">[configurations]</div>
-<div class="line">spark.scheduler.mode = FAIR</div>
-<div class="line">spark.kubernetes.container.image = &lt;spark_image_to_be_used&gt;</div>
-<div class="line">spark.kubernetes.namespace = &lt;namespace_for_running_job:
-default=default&gt;</div>
-</div>
-</section>
-<section id="basic-parameters-2">
-<span id="id3"></span><h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters-2" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><dl class="simple"><dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
-<li><dl class="simple"><dt>task_id: str</dt><p>- Task ID for the task (used in Dag context)</p></dl></li>
-<li><dl class="simple"><dt>method_id: str</dt><p>- Method ID for the specific Task (used in Code Artifact codebase context)</p></dl></li>
-<li><dl class="simple"><dt>code_artifact: List[str]</dt><p>- List of Code Artifacts to be used as Pyspark dependencies.</p></dl></li>
-<li><dl class="simple"><dt>name: Optional[str]</dt><p>- name of the pod in which the task will run, will be used (plus a random suffix) to generate a pod id (DNS-1123
-subdomain, containing only [a-z0-9.-]).</p></dl></li>
-<li><dl class="simple"><dt>app_name: Optional[str]</dt><p>- Name of the Application</p></dl></li>
-<li><dl class="simple"><dt>input_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
-<li><dl class="simple"><dt>output_filenames_dict: Optional[Dict]</dt><p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned in configurations. To be passed in dictionary format.</p></dl></li>
-</ul>
-<p id="advanced-parameters-2"><em>Advanced</em> <em>Parameters</em></p>
-<ul class="simple">
-<li><dl class="simple"><dt>method_args_dict: Optional[Dict]</dt><p>- Arguments required for main method of the main class. To be passed in dictionary format and
-very customizable.</p></dl></li>
-<li><dl class="simple"><dt>config_group: Optional[str]</dt><p>- Name of the config_group to use. If not given, use default group specified in Cluster config</p></dl></li>
-<li><dl class="simple"><dt>namespace: Optional[str]</dt><p>- the namespace to run within kubernetes. If not given, default namespace</p></dl></li>
-<li><dl class="simple"><dt>get_logs: Optional[bool]</dt><p>- get the stdout of the container as logs of the tasks.</p></dl></li>
-</ul>
-</section>
-<section id="dag-format-2">
-<span id="id4"></span><h4><em>Dag format</em><a class="headerlink" href="#dag-format-2" title="Permalink to this heading">#</a></h4>
-<div class="line-block">
-<pre>
+                    </section>
+                  </section>
+                  <section id="k8pysparkoperator">
+                    <h3><strong>K8PySparkOperator</strong><a class="headerlink" href="#k8pysparkoperator"
+                        title="Permalink to this heading">#</a></h3>
+                    <p>Use the K8PySparkOperator to execute Pyspark Jobs over the Kubernetes
+                      cluster.</p>
+                    <section id="prerequisites">
+                      <h4><em>Prerequisites</em><a class="headerlink" href="#prerequisites"
+                          title="Permalink to this heading">#</a></h4>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>Set the spark configuration appropriately. The important fields required are:</p>
+                              </dd>
+                          </dl>
+                        </li>
+                      </ul>
+                      <div class="line-block">
+                        <div class="line">[arguments]</div>
+                        <div class="line">master = &lt;Master of your Kubernetes Cluster&gt;</div>
+                        <div class="line">py-files = &lt;Upload py-files and egg files for PySpark in Spark
+                          Dependency and select here&gt;</div>
+                        <div class="line">deploy-mode = cluster</div>
+                        <div class="line">[configurations]</div>
+                        <div class="line">spark.scheduler.mode = FAIR</div>
+                        <div class="line">spark.kubernetes.container.image = &lt;spark_image_to_be_used&gt;</div>
+                        <div class="line">spark.kubernetes.namespace = &lt;namespace_for_running_job:
+                          default=default&gt;</div>
+                      </div>
+                    </section>
+                    <section id="basic-parameters-2">
+                      <span id="id3"></span>
+                      <h4><em>Basic</em> <em>Parameters</em><a class="headerlink" href="#basic-parameters-2"
+                          title="Permalink to this heading">#</a></h4>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>dag: CaiDAG</dt>
+                            <p>- Object of the CaiDAG Class</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>task_id: str</dt>
+                            <p>- Task ID for the task (used in Dag context)</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>method_id: str</dt>
+                            <p>- Method ID for the specific Task (used in Code Artifact codebase context)</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>code_artifact: List[str]</dt>
+                            <p>- List of Code Artifacts to be used as Pyspark dependencies.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>name: Optional[str]</dt>
+                            <p>- name of the pod in which the task will run, will be used (plus a random suffix) to
+                              generate a pod id (DNS-1123
+                              subdomain, containing only [a-z0-9.-]).</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>app_name: Optional[str]</dt>
+                            <p>- Name of the Application</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>input_filenames_dict: Optional[Dict]</dt>
+                            <p>- Relative file paths for input files w.r.t s3a base bucket and s3a base path mentioned
+                              in configurations. To be passed in dictionary format.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>output_filenames_dict: Optional[Dict]</dt>
+                            <p>- Relative file paths for output files w.r.t s3a base bucket and s3a base path mentioned
+                              in configurations. To be passed in dictionary format.</p>
+                          </dl>
+                        </li>
+                      </ul>
+                      <p id="advanced-parameters-2"><em>Advanced</em> <em>Parameters</em></p>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>method_args_dict: Optional[Dict]</dt>
+                            <p>- Arguments required for main method of the main class. To be passed in dictionary format
+                              and
+                              very customizable.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>config_group: Optional[str]</dt>
+                            <p>- Name of the config_group to use. If not given, use default group specified in Cluster
+                              config</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>namespace: Optional[str]</dt>
+                            <p>- the namespace to run within kubernetes. If not given, default namespace</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>get_logs: Optional[bool]</dt>
+                            <p>- get the stdout of the container as logs of the tasks.</p>
+                          </dl>
+                        </li>
+                      </ul>
+                    </section>
+                    <section id="dag-format-2">
+                      <span id="id4"></span>
+                      <h4><em>Dag format</em><a class="headerlink" href="#dag-format-2"
+                          title="Permalink to this heading">#</a></h4>
+                      <div class="line-block">
+                        <pre>
   <code>
 from cai_k8_pyspark_plugin import CaiK8PySparkOperator
 from cai_dag import CaiDAG
@@ -747,10 +1012,11 @@ task = CaiK8PySparkOperator(
 ) 
   </code>
 </pre>
-</section>
-<section id="example-dag">
-<h4><em>Example Dag</em><a class="headerlink" href="#example-dag" title="Permalink to this heading">#</a></h4>
-<pre>
+                    </section>
+                    <section id="example-dag">
+                      <h4><em>Example Dag</em><a class="headerlink" href="#example-dag"
+                          title="Permalink to this heading">#</a></h4>
+                      <pre>
   <code>
 from cai_k8_pyspark_plugin import CaiK8PySparkOperator
 from cai_dag import CaiDAG
@@ -787,33 +1053,37 @@ task = CaiK8PySparkOperator(
 )
   </code>
 </pre>
-</section>
-</section>
+                    </section>
+                  </section>
 
-<section id="example-caiiosupport-pyspark">
-  <h4><em>Example Using CaiIOSupport</em><a class="headerlink" href="#examplecaiiosupportpyspark" title="Permalink to this heading">#</a></h4>
+                  <section id="example-caiiosupport-pyspark">
+                    <h4><em>Example Using CaiIOSupport</em><a class="headerlink" href="#examplecaiiosupportpyspark"
+                        title="Permalink to this heading">#</a></h4>
 
-  <blockquote>
-    <div><a class="reference internal image-reference" href="_images/caiiosupport_pyspark_test.gif"><img
-          alt="_images/caiiosupport_pyspark_test.gif" src="_images/caiiosupport_pyspark_test.gif"
-          style="width: 7.74479in; height: 3.53585in;" /></a>
-    </div>
-  </blockquote>
-<p>
-  This is a sample Pipeline which reads files as a PySpark dataframe from s3 and writes PySpark dataframes to s3 in specified file formats.
-</p>
-<p>
-  The file formats supported are ["csv", "parquet", "json"]
-</p>
-<p>
-  Steps to run the sample pipeline are as follows:
-</p>
-<ul>
-  <li>
-    Copy following main.py in notebook as a .py/ipynb file.
-  </li>
-  <h5><em>Main file for the Code Artifact</em><a class="headerlink" href="#mainpysparkoperator" title="Permalink to this heading">#</a></h5>
-<pre><code>
+                    <blockquote>
+                      <div><a class="reference internal image-reference"
+                          href="_images/caiiosupport_pyspark_test.gif"><img alt="_images/caiiosupport_pyspark_test.gif"
+                            src="_images/caiiosupport_pyspark_test.gif"
+                            style="width: 7.74479in; height: 3.53585in;" /></a>
+                      </div>
+                    </blockquote>
+                    <p>
+                      This is a sample Pipeline which reads files as a PySpark dataframe from s3 and writes PySpark
+                      dataframes to s3 in specified file formats.
+                    </p>
+                    <p>
+                      The file formats supported are ["csv", "parquet", "json"]
+                    </p>
+                    <p>
+                      Steps to run the sample pipeline are as follows:
+                    </p>
+                    <ul>
+                      <li>
+                        Copy following main.py in notebook as a .py/ipynb file.
+                      </li>
+                      <h5><em>Main file for the Code Artifact</em><a class="headerlink" href="#mainpysparkoperator"
+                          title="Permalink to this heading">#</a></h5>
+                      <pre><code>
 # Pyspark code-artifact example which can be used for operations : READ, WRITE, MOVE
 import sys
 from cai_utils.utils import CaiIOSupport  ### Do not modify
@@ -848,16 +1118,18 @@ def main():
 if __name__ == "__main__":
     main()
 </code></pre>
-<li>
-  Right click on the ipynb/py file and upload it to pipelines as a code artifact. Make sure to include main.py.ß
-</li>
-<li>
-  Specify the code artifact and the main.py name in the sample pipeline code given below.
-</li>
+                      <li>
+                        Right click on the ipynb/py file and upload it to pipelines as a code artifact. Make sure to
+                        include main.py.ß
+                      </li>
+                      <li>
+                        Specify the code artifact and the main.py name in the sample pipeline code given below.
+                      </li>
 
-<h5><em>Pipeline Code</em><a class="headerlink" href="#pipelinepythonoperator" title="Permalink to this heading">#</a></h5>
+                      <h5><em>Pipeline Code</em><a class="headerlink" href="#pipelinepythonoperator"
+                          title="Permalink to this heading">#</a></h5>
 
-<pre>
+                      <pre>
   <code>
 from cai_k8_pyspark_plugin import CaiK8PySparkOperator
 from cai_dag import CaiDAG
@@ -952,35 +1224,62 @@ read_json_write_csv_pyspark = CaiK8PySparkOperator(
 read_csv_write_parquet_pyspark >> read_parquet_write_json_pyspark >> read_json_write_csv_pyspark
 </code>
 </pre>
-<li>
-  Trigger the Pipeline.
-</li>
-<li>
-  This pipeline will interconvert one file format to other and store all outputs in s3.
-</li>
-</ul>
-</section>
+                      <li>
+                        Trigger the Pipeline.
+                      </li>
+                      <li>
+                        This pipeline will interconvert one file format to other and store all outputs in s3.
+                      </li>
+                    </ul>
+                  </section>
 
 
-<section id="bashoperator">
-<h3><strong>BashOperator</strong><a class="headerlink" href="#bashoperator" title="Permalink to this heading">#</a></h3>
-<p>Use the BashOperator to execute commands in a Bash shell.</p>
-<section id="parameters">
-<h4><em>Parameters</em><a class="headerlink" href="#parameters" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><dl class="simple"><dt>bash_command: str</dt><p>- The command, set of commands or reference to a bash script (must be ‘.sh’) to be executed. (templated)</p></dl></li>
-<li><dl class="simple"><dt>env: Optional[Dict]</dt><p>- If env is not None, it must be a dict that defines the environment variables for the new process; these
-are used instead of inheriting the current process environment,
-which is the default behavior. (templated)</p></dl></li>
-<li><dl class="simple"><dt>output_encoding: Optional[str]</dt><p>- Output encoding of bash command</p></dl></li>
-<li><dl class="simple"><dt>cwd: Optional[str]</dt><p>- Working directory to execute the command in. If None (default), the command is run in a temporary
-directory.</p></dl></li>
-</ul>
-</section>
-<section id="example-1">
-<span id="id5"></span><h4><em>Example</em><a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h4>
-<div class="line-block">
-  <pre>
+                  <section id="bashoperator">
+                    <h3><strong>BashOperator</strong><a class="headerlink" href="#bashoperator"
+                        title="Permalink to this heading">#</a></h3>
+                    <p>Use the BashOperator to execute commands in a Bash shell.</p>
+                    <section id="parameters">
+                      <h4><em>Parameters</em><a class="headerlink" href="#parameters"
+                          title="Permalink to this heading">#</a></h4>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>bash_command: str</dt>
+                            <p>- The command, set of commands or reference to a bash script (must be ‘.sh’) to be
+                              executed. (templated)</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>env: Optional[Dict]</dt>
+                            <p>- If env is not None, it must be a dict that defines the environment variables for the
+                              new process; these
+                              are used instead of inheriting the current process environment,
+                              which is the default behavior. (templated)</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>output_encoding: Optional[str]</dt>
+                            <p>- Output encoding of bash command</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>cwd: Optional[str]</dt>
+                            <p>- Working directory to execute the command in. If None (default), the command is run in a
+                              temporary
+                              directory.</p>
+                          </dl>
+                        </li>
+                      </ul>
+                    </section>
+                    <section id="example-1">
+                      <span id="id5"></span>
+                      <h4><em>Example</em><a class="headerlink" href="#example-1"
+                          title="Permalink to this heading">#</a></h4>
+                      <div class="line-block">
+                        <pre>
     <code>
 from cai_bash_plugin import CaiBashOperator
 from cai_dag import CaiDAG
@@ -997,35 +1296,76 @@ run_this = CaiBashOperator(
 )
     </code>
   </pre>
-</div>
-</section>
-</section>
-<section id="loopablebatchoperator">
-<h3><strong>LoopableBatchOperator</strong><a class="headerlink" href="#loopablebatchoperator" title="Permalink to this heading">#</a></h3>
-<p>LoopableBatchOperator allows you to run a target dag in a loop by
-passing input from a csv file in batches. You can also provide an
-offset, filter_by a column to send rows which match a specific value.</p>
-<section id="parameters-1">
-<span id="id6"></span><h4><em>Parameters</em><a class="headerlink" href="#parameters-1" title="Permalink to this heading">#</a></h4>
-<ul class="simple">
-<li><dl class="simple"><dt>dag: CaiDAG</dt><p>- Object of the CaiDAG Class</p></dl></li>
-<li><dl class="simple"><dt>batch_offset: Optional[int]:</dt><p>Default 0</p></dl></li>
-<li><dl class="simple"><dt>batch_size: Optional[int]</dt><p>- Size of the batch. Defaults to 10.</p></dl></li>
-<li><dl class="simple"><dt>filter_by: Optional[str]</dt><p>- Column name to filter_by. Defaults to None, which means all rows will be passed.</p></dl></li>
-<li><dl class="simple">
-<dt>filter_values: Optional[List[str]]</dt><p>- Values in a list with which the filter_by column must match against for a row to be passed to
-target dag.</p></dl></li>
-<li><dl class="simple"><dt>run_dag_id: str</dt><p>- Dag id of the target dag.</p></dl></li>
-<li><dl class="simple"><dt>metadata_file: Optional[str]</dt><p>- File which contains the csv rows which should be passed. Any valid string path is acceptable. The string
-could be a URL. Valid URL schemes include http, ftp, s3, gs, and
-file. For file URLs, a host is expected. A local file could be:
-file://localhost/path/to/table.csv.</p></dl></li>
-</ul>
-</section>
-<section id="example-2">
-<span id="id7"></span><h4><em>Example</em><a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h4>
-<div class="line-block">
-  <pre>
+                      </div>
+                    </section>
+                  </section>
+                  <section id="loopablebatchoperator">
+                    <h3><strong>LoopableBatchOperator</strong><a class="headerlink" href="#loopablebatchoperator"
+                        title="Permalink to this heading">#</a></h3>
+                    <p>LoopableBatchOperator allows you to run a target dag in a loop by
+                      passing input from a csv file in batches. You can also provide an
+                      offset, filter_by a column to send rows which match a specific value.</p>
+                    <section id="parameters-1">
+                      <span id="id6"></span>
+                      <h4><em>Parameters</em><a class="headerlink" href="#parameters-1"
+                          title="Permalink to this heading">#</a></h4>
+                      <ul class="simple">
+                        <li>
+                          <dl class="simple">
+                            <dt>dag: CaiDAG</dt>
+                            <p>- Object of the CaiDAG Class</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>batch_offset: Optional[int]:</dt>
+                            <p>Default 0</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>batch_size: Optional[int]</dt>
+                            <p>- Size of the batch. Defaults to 10.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>filter_by: Optional[str]</dt>
+                            <p>- Column name to filter_by. Defaults to None, which means all rows will be passed.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>filter_values: Optional[List[str]]</dt>
+                            <p>- Values in a list with which the filter_by column must match against for a row to be
+                              passed to
+                              target dag.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>run_dag_id: str</dt>
+                            <p>- Dag id of the target dag.</p>
+                          </dl>
+                        </li>
+                        <li>
+                          <dl class="simple">
+                            <dt>metadata_file: Optional[str]</dt>
+                            <p>- File which contains the csv rows which should be passed. Any valid string path is
+                              acceptable. The string
+                              could be a URL. Valid URL schemes include http, ftp, s3, gs, and
+                              file. For file URLs, a host is expected. A local file could be:
+                              file://localhost/path/to/table.csv.</p>
+                          </dl>
+                        </li>
+                      </ul>
+                    </section>
+                    <section id="example-2">
+                      <span id="id7"></span>
+                      <h4><em>Example</em><a class="headerlink" href="#example-2"
+                          title="Permalink to this heading">#</a></h4>
+                      <div class="line-block">
+                        <pre>
     <code>
 from cai_loopable_batch_plugin import CaiLoopableBatchOperator
 from cai_dag import CaiDAG
@@ -1048,113 +1388,131 @@ task1 = CaiLoopableBatchOperator(
 )
     </code>
   </pre>
-</div>
-<p>This dag triggers a dag with the specified run_dag_id (filename of the
-new dag).</p>
-</section>
-</section>
-</section>
-</section>
+                      </div>
+                      <p>This dag triggers a dag with the specified run_dag_id (filename of the
+                        new dag).</p>
+                    </section>
+                  </section>
+                </section>
+              </section>
 
-        </article>
-      </div>
-      <footer>
-        
-        <div class="related-pages">
-          <a class="next-page" href="admin.html">
+          </article>
+        </div>
+        <footer>
+
+          <div class="related-pages">
+            <a class="next-page" href="admin.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
                 <div class="title">Additional Admin Features</div>
               </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon">
+                <use href="#svg-arrow-right"></use>
+              </svg>
             </a>
-          <a class="prev-page" href="configuration.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            <a class="prev-page" href="configuration.html">
+              <svg class="furo-related-icon">
+                <use href="#svg-arrow-right"></use>
+              </svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
-                
+
                 <div class="title"><strong>Configurations</strong></div>
-                
+
               </div>
             </a>
-        </div>
-        <div class="bottom-of-page">
-          <div class="left-details">
-            <div class="copyright">
+          </div>
+          <div class="bottom-of-page">
+            <div class="left-details">
+              <div class="copyright">
                 Copyright &#169; 2023
-            </div>
-           
-          </div>
-          <div class="right-details">
-            
-          </div>
-        </div>
-        
-      </footer>
-    </div>
-    <aside class="toc-drawer">
-      
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Pipelines Developer Reference</a><ul>
-<li><a class="reference internal" href="#operators"><strong>Operators</strong></a><ul>
-<li><a class="reference internal" href="#pythonoperator"><strong>PythonOperator</strong></a><ul>
-<li><a class="reference internal" href="#basic-parameters"><em>Basic</em> <em>Parameters</em></a></li>
-<li><a class="reference internal" href="#dag-format"><em>Dag format</em></a></li>
-<li><a class="reference internal" href="#example"><em>Example</em></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#k8pythonoperator"><strong>K8PythonOperator</strong></a><ul>
-<li><a class="reference internal" href="#basic-parameters-1"><em>Basic</em> <em>Parameters</em></a></li>
-<li><a class="reference internal" href="#dag-format-1"><em>Dag format</em></a></li>
-<li><a class="reference internal" href="#examples"><em>Examples</em></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#k8pysparkoperator"><strong>K8PySparkOperator</strong></a><ul>
-<li><a class="reference internal" href="#prerequisites"><em>Prerequisites</em></a></li>
-<li><a class="reference internal" href="#basic-parameters-2"><em>Basic</em> <em>Parameters</em></a></li>
-<li><a class="reference internal" href="#dag-format-2"><em>Dag format</em></a></li>
-<li><a class="reference internal" href="#example-dag"><em>Example Dag</em></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#bashoperator"><strong>BashOperator</strong></a><ul>
-<li><a class="reference internal" href="#parameters"><em>Parameters</em></a></li>
-<li><a class="reference internal" href="#example-1"><em>Example</em></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#loopablebatchoperator"><strong>LoopableBatchOperator</strong></a><ul>
-<li><a class="reference internal" href="#parameters-1"><em>Parameters</em></a></li>
-<li><a class="reference internal" href="#example-2"><em>Example</em></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+              </div>
 
+            </div>
+            <div class="right-details">
+
+            </div>
+          </div>
+
+        </footer>
+      </div>
+      <aside class="toc-drawer">
+
+
+        <div class="toc-sticky toc-scroll">
+          <div class="toc-title-container">
+            <span class="toc-title">
+              On this page
+            </span>
+          </div>
+          <div class="toc-tree-container">
+            <div class="toc-tree">
+              <ul>
+                <li><a class="reference internal" href="#">Pipelines Developer Reference</a>
+                  <ul>
+                    <li><a class="reference internal" href="#operators"><strong>Operators</strong></a>
+                      <ul>
+                        <li><a class="reference internal" href="#pythonoperator"><strong>PythonOperator</strong></a>
+                          <ul>
+                            <li><a class="reference internal" href="#basic-parameters"><em>Basic</em>
+                                <em>Parameters</em></a></li>
+                            <li><a class="reference internal" href="#dag-format"><em>Dag format</em></a></li>
+                            <li><a class="reference internal" href="#example"><em>Example</em></a></li>
+                          </ul>
+                        </li>
+                        <li><a class="reference internal" href="#k8pythonoperator"><strong>K8PythonOperator</strong></a>
+                          <ul>
+                            <li><a class="reference internal" href="#basic-parameters-1"><em>Basic</em>
+                                <em>Parameters</em></a></li>
+                            <li><a class="reference internal" href="#dag-format-1"><em>Dag format</em></a></li>
+                            <li><a class="reference internal" href="#examples"><em>Examples</em></a></li>
+                          </ul>
+                        </li>
+                        <li><a class="reference internal"
+                            href="#k8pysparkoperator"><strong>K8PySparkOperator</strong></a>
+                          <ul>
+                            <li><a class="reference internal" href="#prerequisites"><em>Prerequisites</em></a></li>
+                            <li><a class="reference internal" href="#basic-parameters-2"><em>Basic</em>
+                                <em>Parameters</em></a></li>
+                            <li><a class="reference internal" href="#dag-format-2"><em>Dag format</em></a></li>
+                            <li><a class="reference internal" href="#example-dag"><em>Example Dag</em></a></li>
+                          </ul>
+                        </li>
+                        <li><a class="reference internal" href="#bashoperator"><strong>BashOperator</strong></a>
+                          <ul>
+                            <li><a class="reference internal" href="#parameters"><em>Parameters</em></a></li>
+                            <li><a class="reference internal" href="#example-1"><em>Example</em></a></li>
+                          </ul>
+                        </li>
+                        <li><a class="reference internal"
+                            href="#loopablebatchoperator"><strong>LoopableBatchOperator</strong></a>
+                          <ul>
+                            <li><a class="reference internal" href="#parameters-1"><em>Parameters</em></a></li>
+                            <li><a class="reference internal" href="#example-2"><em>Example</em></a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+            </div>
           </div>
         </div>
-      </div>
-      
-      
-    </aside>
+
+
+      </aside>
+    </div>
   </div>
-</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/furo.js"></script>
-    </body>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/sphinx_highlight.js"></script>
+  <script src="_static/scripts/furo.js"></script>
+</body>
+
 </html>

@@ -1,667 +1,960 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head><meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="FAQs" href="faq.html" /><link rel="prev" title="Pipelines Developer Reference" href="pipeline.html" />
 
-    <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
-        <title>Additional Admin Features - DSCW Platform Technical Overview &amp; User Guide</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
-    
-    
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="FAQs" href="faq.html" />
+  <link rel="prev" title="Pipelines Developer Reference" href="pipeline.html" />
+
+  <!-- Generated with Sphinx 6.1.2 and Furo 2022.12.07 -->
+  <title>Additional Admin Features - DSCW Platform Technical Overview &amp; User Guide</title>
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css"
+    href="_static/styles/furo.css?digest=91d0f0d1c444bdcb17a68e833c7a53903343c195" />
+  <link rel="stylesheet" type="text/css"
+    href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
 
 
-<style>
-  body {
-    --color-code-background: #f8f8f8;
-  --color-code-foreground: black;
-  
-  }
-  @media not print {
-    body[data-theme="dark"] {
-      --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
+
+
+  <style>
+    body {
+      --color-code-background: #f8f8f8;
+      --color-code-foreground: black;
+
     }
-    @media (prefers-color-scheme: dark) {
-      body:not([data-theme="light"]) {
+
+    @media not print {
+      body[data-theme="dark"] {
         --color-code-background: #202020;
-  --color-code-foreground: #d0d0d0;
-  
+        --color-code-foreground: #d0d0d0;
+
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body:not([data-theme="light"]) {
+          --color-code-background: #202020;
+          --color-code-foreground: #d0d0d0;
+
+        }
       }
     }
-  }
-</style></head>
-  <body>
-    
-    <script>
-      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
-    </script>
-    
+  </style>
+</head>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="svg-toc" viewBox="0 0 24 24">
-    <title>Contents</title>
-    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
-      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
-    </svg>
-  </symbol>
-  <symbol id="svg-menu" viewBox="0 0 24 24">
-    <title>Menu</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
-      <line x1="3" y1="12" x2="21" y2="12"></line>
-      <line x1="3" y1="6" x2="21" y2="6"></line>
-      <line x1="3" y1="18" x2="21" y2="18"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
-    <title>Expand</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
-      <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-  </symbol>
-  <symbol id="svg-sun" viewBox="0 0 24 24">
-    <title>Light mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </symbol>
-  <symbol id="svg-moon" viewBox="0 0 24 24">
-    <title>Dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-    </svg>
-  </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
-    </svg>
-  </symbol>
-</svg>
+<body>
 
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
-<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
-<label class="overlay sidebar-overlay" for="__navigation">
-  <div class="visually-hidden">Hide navigation sidebar</div>
-</label>
-<label class="overlay toc-overlay" for="__toc">
-  <div class="visually-hidden">Hide table of contents sidebar</div>
-</label>
+  <script>
+    document.body.dataset.theme = localStorage.getItem("chakra-ui-color-mode") || "light";
+  </script>
 
 
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="svg-toc" viewBox="0 0 24 24">
+      <title>Contents</title>
+      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+        <path
+          d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z" />
+      </svg>
+    </symbol>
+    <symbol id="svg-menu" viewBox="0 0 24 24">
+      <title>Menu</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+      <title>Expand</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </symbol>
+    <symbol id="svg-sun" viewBox="0 0 24 24">
+      <title>Light mode</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+    </symbol>
+    <symbol id="svg-moon" viewBox="0 0 24 24">
+      <title>Dark mode</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+      </svg>
+    </symbol>
+    <symbol id="svg-sun-half" viewBox="0 0 24 24">
+      <title>Auto light/dark mode</title>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="M13 12h5" />
+        <path d="M13 15h4" />
+        <path d="M13 18h1" />
+        <path d="M13 9h4" />
+        <path d="M13 6h1" />
+      </svg>
+    </symbol>
+  </svg>
 
-<div class="page">
-  <header class="mobile-header">
-    <div class="header-left">
-      <label class="nav-overlay-icon" for="__navigation">
-        <div class="visually-hidden">Toggle site navigation sidebar</div>
-        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
-      </label>
-    </div>
-    <div class="header-center">
-      <a href="index.html"><div class="brand"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></div></a>
-    </div>
-    <div class="header-right">
-      <div class="theme-toggle-container theme-toggle-header">
-        <button class="theme-toggle">
-          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
-          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
-          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
-        </button>
+  <input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+  <input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+  <label class="overlay sidebar-overlay" for="__navigation">
+    <div class="visually-hidden">Hide navigation sidebar</div>
+  </label>
+  <label class="overlay toc-overlay" for="__toc">
+    <div class="visually-hidden">Hide table of contents sidebar</div>
+  </label>
+
+
+
+  <div class="page">
+    <header class="mobile-header">
+      <div class="header-left">
+        <label class="nav-overlay-icon" for="__navigation">
+          <div class="visually-hidden">Toggle site navigation sidebar</div>
+          <i class="icon"><svg>
+              <use href="#svg-menu"></use>
+            </svg></i>
+        </label>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
-        <div class="visually-hidden">Toggle table of contents sidebar</div>
-        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-      </label>
-    </div>
-  </header>
-  <aside class="sidebar-drawer">
-    <div class="sidebar-container">
-      
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
-  
-  
-  <span class="sidebar-brand-text"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span></span>
-  
-</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
-  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
-  <input type="hidden" name="check_keywords" value="yes">
-  <input type="hidden" name="area" value="default">
-</form>
-<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">ARCHITECTURE</a></li>
-</ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="project.html">AI PLATFORM USER GUIDE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="pipelines.html"><strong>Pipelines</strong></a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="developer.html"><strong>Developer</strong></a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="dataLake.html"><strong>Data Lake Explorer</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="dbExplorer.html"><strong>Database Explorer</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="datasets.html"><strong>Datasets</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="model%26Exp.html"><strong>Models and Experiments</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="notebooks.html"><strong>Notebooks</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="autoEDA.html"><strong>Auto EDA (Exploratory Data Analysis)</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="apiCollection.html"><strong>API Collections (Auto API Builder)</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="projectServices.html"><strong>Project Services</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="monitor.html"><strong>Monitor</strong></a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="centralisedLogs.html"><strong>Centralised Logs</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="observability.html"><strong>Observability</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="metricDash.html"><strong>Metrics Dashboard</strong></a></li>
-<li class="toctree-l3"><a class="reference internal" href="distributedTrace.html"><strong>Distributed Trace</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="configuration.html"><strong>Configurations</strong></a></li>
-</ul>
-</li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">appendix and references</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipelines Developer Reference</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Additional Admin Features</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQs</a></li>
-</ul>
-
-</div>
-</div>
-
-      </div>
-      
-    </div>
-  </aside>
-  <div class="main">
-    <div class="content">
-      <div class="article-container">
-        <a href="#" class="back-to-top muted-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
-          </svg>
-          <span>Back to top</span>
-        </a>
-        <div class="content-icon-container">
-          
-<div class="theme-toggle-container theme-toggle-content">
-            <button class="theme-toggle">
-              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
-              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
-              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
-            </button>
+      <div class="header-center">
+        <a href="index.html">
+          <div class="brand"><b>DSCW Platform</b> <span style='font-size:20px'>Technical Overview & User Guide</span>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
-            <div class="visually-hidden">Toggle table of contents sidebar</div>
-            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
-          </label>
-        </div>
-        <article role="main">
-          <section id="additional-admin-features">
-<span id="section-11"></span><h1>Additional Admin Features<a class="headerlink" href="#additional-admin-features" title="Permalink to this heading">#</a></h1>
-<section id="spark-configuration-guide">
-<h2><strong>Spark Configuration Guide</strong><a class="headerlink" href="#spark-configuration-guide" title="Permalink to this heading">#</a></h2>
-<div class="line-block">
-<div class="line">[arguments]</div>
-<div class="line">master = &lt;Master of your Kubernetes Cluster&gt;</div>
-<div class="line">jars = &lt;Upload jars for Spark in Spark Dependency and select here&gt;</div>
-<div class="line">py-files = &lt;Upload pyfiles and egg files for PySpark in Spark
-Dependency and select here&gt;</div>
-<div class="line">deploy-mode = cluster // Don’t modify this for Kubernetes Based Spark
-cluster.</div>
-<div class="line">[configurations]</div>
-<div class="line">spark.scheduler.mode = FAIR</div>
-<div class="line">spark.kubernetes.container.image = &lt;spark_image_to_be_used&gt;</div>
-<div class="line">spark.kubernetes.namespace = &lt;namespace_for_running_job:
-default=default&gt;</div>
-</div>
-<p><strong>Add Input Data Source in S3 :</strong></p>
-<ul class="simple">
-<li><p>Upload data source in S3A data lake:</p></li>
-<li><p>Create a bucket in S3A (ex: DSCW-spark-k8s-test).</p></li>
-<li><dl class="simple">
-<dt>Create a folder ‘inputs’ in that bucket or at some path inside your</dt><dd><p>bucket.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Upload data source file in above folder, with the key of format</dt><dd><p><em>BUCKET/…/…/inputs/&lt;data_source_name&gt;</em>
-<em>(ex : DSCW-spark-k8s-test/…/…/…/inputs/car_crashes.csv)</em></p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>File with the S3A URI</dt><dd><p><em>s3a://&lt;bucket_name&gt;/…/…/…/inputs/&lt;data_source_name&gt;</em> should be
-created (ex:
-s3://DSCW-spark-k8s-test/…/…/…/inputs/car_crashes.csv)</p>
-</dd>
-</dl>
-</li>
-</ul>
-<blockquote>
-<div><p><strong>Code Artifacts :</strong></p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Upload Application jar (ex: DSCW-eda.jar) from local to <em>Developer -&gt;</em></dt><dd><p><em>Code Artifact</em> page in Workbench.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>List the jar name in argument ‘code_artifact’ when calling the</dt><dd><p>Kubernetes Spark Operator (implicitly set in template for EDA).</p>
-</dd>
-</dl>
-</li>
-</ul>
-<blockquote>
-<div><p><strong>Example Test - Code Artifacts</strong></p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Application jar (application_jar/spark_k8_dep_test.jar): Upload</dt><dd><p>spark_k8_dep_test.jar in <em>Developer -&gt; Code Artifact</em> page in
-Workbench.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Dependency jar (dependency_jar/spark-nlp_2.12-3.3.4.jar): Upload</dt><dd><p>spark-nlp_2.12-3.3.4.jar in <em>Cluster Configurations -&gt; Spark
-Dependency</em> page.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Select the above dependency jar in jars of <em>Cluster Configurations -&gt;</em></dt><dd><p><em>Spark configuration</em> page</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Example Pipeline (example_dag/spark_k8_test_dag.py):Create pipeline</dt><dd><p>in <em>Pipeline -&gt; Manage and Create Pipelines</em> with the example
-pipeline code shared below :</p>
-</dd>
-</dl>
-</li>
-</ul>
-<blockquote>
-<div><p>code_artifact = ‘spark_k8_dep_test.jar’</p>
-<p>spark_conf = “spark/spark-conf”</p>
-<p>data_uri =
-‘s3a://aws-dsofminerva-stg-s1e1sg1c1-swb-ds-001/Datastores/ds-DSCW-01/Experiments-Default/inputs/car_crashes.csv’</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Update the input file path in the pipeline file (‘input_data_uri’</dt><dd><p>variable - line:21) - also create bucket and input data file as
-mentioned above.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Update the output folder path in the example pipeline file</dt><dd><p>(output_data_uri variable - line:23) - without trailing slash</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Trigger the pipeline and output partitioned file should be created in</dt><dd><p>the S3 datalake created by user (path:
-s3a://&lt;bucket_name/&lt;output_folder_path&gt;/car_crashes/…
-preliminary_summary/part..csv)</p>
-</dd>
-</dl>
-</li>
-</ul>
-</section>
-<section id="pyspark-configuration-guide">
-<h2><strong>PySpark Configuration Guide</strong><a class="headerlink" href="#pyspark-configuration-guide" title="Permalink to this heading">#</a></h2>
-<p><strong>Add Input Data Source in S3 :</strong></p>
-<ul class="simple">
-<li><p>Upload data source in S3A data lake:</p></li>
-<li><p>Create a bucket in S3A (ex: DSCW-pyspark-k8s-test).</p></li>
-<li><dl class="simple">
-<dt>Create a folder ‘inputs’ in that bucket or at some path inside your</dt><dd><p>bucket.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Upload data source file in above folder, with the key of format</dt><dd><p><em>BUCKET/…/…/inputs/&lt;data_source_name&gt;</em>
-<em>(ex : DSCW-pyspark-k8s-test/…/…/…/inputs/car_crashes.csv)</em></p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>File with the S3A URI</dt><dd><p><em>s3a://&lt;bucket_name&gt;/…/…/…/inputs/&lt;data_source_name&gt;</em> should be
-created (ex:
-s3://DSCW-pyspark-k8s-test/…/…/…/inputs/car_crashes.csv)</p>
-</dd>
-</dl>
-</li>
-</ul>
-<p><strong>Code Artifacts</strong></p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Upload the following two application files (for example: main.py</dt><dd><p>(code_artifact), pyspark_example_test-0.0.1-py3.9.egg
-(pyspark_dependencies)) from local to <em>Developer -&gt; Code Artifact</em>
-page in Workbench.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>List the ‘code_artifact’ name in argument ‘code_artifact’ and the</dt><dd><p>‘pyspark_dependencies’ name in argument ‘pyspark_dependencies’
-when calling the Kubernetes Pyspark Operator.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<p><strong>Example Test - Code Artifacts</strong></p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Update all spark configurations in ‘Cluster Configurations’ for</dt><dd><p>default group from above section <strong>(Can be set only by Admins)</strong></p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Upload the following Application files in <em>Developer -&gt; Code</em></dt><dd><p><em>Artifacts</em> page in Workbench (mentioned above).</p>
-</dd>
-</dl>
-</li>
-<li><p>main.py (code artifact)</p></li>
-<li><p>Pyspark_example_test-0.0.1-py3.9.egg (pyspark dependencies)</p></li>
-<li><dl class="simple">
-<dt>These two files are listed in the example pipeline (code artifact</dt><dd><p>variable, pyspark_dependencies variable)</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Create pipeline in <em>Pipeline -&gt; Manage and Create Pipelines</em> with the</dt><dd><p>example pipeline code shared below :</p>
-</dd>
-</dl>
-</li>
-</ul>
-<blockquote>
-<div><p>code_artifact = ‘main.py’</p>
-<p>spark_conf = “spark/spark-conf”</p>
-<p>pyspark_dependencies = [“pyspark_example_test-0.0.1-py3.9.egg”]</p>
-<p>input_data_uri =
-‘s3a://aws-dsofminerva-stg-s1e1sg1c1-swb-ds-001/Datastores/ds-DSCW-01/Experiments-Default/inputs/Tips.csv’</p>
-<p>output_data_uri =
-‘s3a://aws-dsofminerva-stg-s1e1sg1c1-swb-ds-001/Datastores/ds-DSCW-01/Experiments-Default/outputs’</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Update the input file path in the example pipeline file</dt><dd><p>(input_data_uri variable - line 18), also create bucket and input
-data file as prerequisites.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Update the output folder path in the example pipeline file (</dt><dd><p>output_data_uri variable - line 20), without trailing slash.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Trigger the pipeline and output partitioned file should be created in</dt><dd><p>the S3 datalake, created by user (path :
-&lt;bucket_name&gt;/&lt;output_folder_path&gt;/part…csv)</p>
-</dd>
-</dl>
-</li>
-</ul>
-</section>
-<section id="notebook-admin-control-panel">
-<span id="section-14"></span><span id="section-13"></span><h2><strong>Notebook Admin Control Panel</strong><a class="headerlink" href="#notebook-admin-control-panel" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>The Control Panel maintains the server states</p></li>
-<li><p>USER can Start/Stop only their servers (kernels)</p></li>
-</ul>
-<a class="reference internal image-reference" href="_images/image10.gif"><img alt="_images/image10.gif" src="_images/image10.gif" style="width: 2.72396in; height: 4in;" /></a>
-<ul class="simple">
-<li><p>ADMIN can Start/Stop all the servers, which can be created by any
-user.</p></li>
-</ul>
-<a class="reference internal image-reference" href="_images/image60.png"><img alt="_images/image60.png" src="_images/image60.png" style="width: 6.5in; height: 1.61111in;" /></a>
-</section>
-<section id="steps-for-viewing-logs">
-<h2><strong>Steps for Viewing Logs</strong><a class="headerlink" href="#steps-for-viewing-logs" title="Permalink to this heading">#</a></h2>
-<p>Steps involved in viewing the logs are as follows :</p>
-<ol class="arabic simple">
-<li><p><strong>Choose an app name</strong> : DSCW-logging contains the following app-name
-:</p>
-<ol class="loweralpha simple">
-<li><dl class="simple">
-<dt><strong>Istio-proxy</strong><span class="classifier">contains the istio sidecar logs for the entire</span></dt><dd><p>mesh</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt><strong>Vault-agent</strong><span class="classifier">contains the vault sidecar logs for the entire</span></dt><dd><p>mesh</p>
-</dd>
-</dl>
-</li>
-<li><p><strong>Workflow-webserver</strong> : workbench webserver logs</p></li>
-<li><p><strong>Workflow-worker</strong> : Workbench Worker logs (Task logs)</p></li>
-<li><p><strong>Workflow-scheduler</strong> : Workbench Scheduler Logs</p></li>
-<li><p><strong>Workbench-mb</strong> : Workbench RabbitMQ</p></li>
-<li><p><strong>Workbench-db</strong> : Workbench MySQL</p></li>
-<li><p><strong>Nb-hub</strong> : Notebook-Server Hub</p></li>
-<li><p><strong>Nb-proxy</strong> : Notebook-Server Proxy</p></li>
-<li><p><strong>Nb-user</strong> : Notebook-Server Single User Pod</p></li>
-<li><dl class="simple">
-<dt><strong>Pvc-logger</strong><span class="classifier">Shows the usage of EFS PVCs, currently in</span></dt><dd><p>development</p>
-</dd>
-</dl>
-</li>
-<li><p><strong>Dump</strong> : contains the logs for all other pods inside the mesh</p></li>
-</ol>
-</li>
-<li><p><strong>Set the time range</strong> : In the upper right corner, you can see the
-selector for the time-range for which the logs will be shown.</p></li>
-<li><p><strong>Identify the log fields associated with the application :</strong> Each
-application has a set of valid fields that are populated using log
-processing pipelines inside fluent-bit. Find these fields and display
-them on the logs UI.</p></li>
-<li><p><strong>Save search :</strong> Once you find the logs you were looking for, you
-can save this search by clicking on the save button in the top right
-corner. As an example, here’s how we would search the logs of
-workflow-scheduler :</p></li>
-</ol>
-<ol class="arabic simple">
-<li><p>Choose the app name</p></li>
-<li><p>Set the appropriate time range</p></li>
-<li><p>Add the logfields</p></li>
-<li><p>Save the search for future use</p></li>
-<li><p>For logs of any other applications, follow the below steps :</p></li>
-</ol>
-<ol class="arabic simple">
-<li><p>Set app to “dump”</p></li>
-<li><p>Set <strong>kubernetes.namespace_name</strong></p></li>
-<li><p>Set <strong>kubernetes.pod_name</strong></p></li>
-<li><p>Set <strong>kubernetes.container_name</strong></p></li>
-</ol>
-<p>Alternatively, you can also search for your container by using any other
-kubernetes metadata such as labels or annotations :</p>
-<ul class="simple">
-<li><p>Search for <strong>kubernetes.labels</strong> in the search field to see the
-available labels that you can query.</p></li>
-<li><p>Search for <strong>kubernetes.annotations</strong> in the search field to see the
-available labels that you can query.</p></li>
-</ul>
-</section>
-<section id="application-specific-log-fields">
-<h2><strong>Application Specific Log Fields</strong><a class="headerlink" href="#application-specific-log-fields" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Pipeline Logs :</strong></p></li>
-</ol>
-<blockquote>
-<div><p><strong>Filters</strong> : App = workflow-scheduler</p>
-<p><strong>Log Fields</strong> : filename , line_no, loglevel, dag_id, task_id,
-run_id, state, try_number</p>
-<p>(Add a filter for the pipeline’s run_id and find the logs for your
-pipeline execution.)</p>
-<a class="reference internal image-reference" href="_images/image80.png"><img alt="_images/image80.png" src="_images/image80.png" style="width: 5.31901in; height: 2.97396in;" /></a>
-<p><strong>2. Pipeline-Tasks Logs:</strong></p>
-<p><strong>Filters</strong> : App = workflow-worker</p>
-<p><strong>Log Fields</strong> : filename , line_no, loglevel, data, offset, dag_id,
-task_id, execution_id,</p>
-<p>try_number, log_id</p>
-</div></blockquote>
-<p>View the logs of any Pipeline :</p>
-<ul class="simple">
-<li><p>Search for ‘id’ in the search box on the left.</p></li>
-<li><p>This will show the fields `dag_id` and `task_id`.</p></li>
-<li><dl class="simple">
-<dt>Click on dag_id and select the dag_id for your Pipeline by clicking</dt><dd><p>on the small “+” button next to the percentage.</p>
-</dd>
-</dl>
-</li>
-<li><p>Follow the same process for task_id to separate the logs by task_id.</p></li>
-<li><dl class="simple">
-<dt>Or you can just view the logs for all the tasks together, and add</dt><dd><p>task_id to the visible list of fields and view all those logs
-together</p>
-</dd>
-</dl>
-</li>
-</ul>
-<blockquote>
-<div><a class="reference internal image-reference" href="_images/image32.gif"><img alt="_images/image32.gif" src="_images/image32.gif" style="width: 5.76614in; height: 2.67188in;" /></a>
-</div></blockquote>
-<p><strong>3. Notebook Server Hub Logs :</strong></p>
-<blockquote>
-<div><p><strong>Filters</strong> : App = couture-notebook-hub</p>
-<p><strong>Log Fields</strong> : loglevel, hub-arg1, data</p>
-<a class="reference internal image-reference" href="_images/image84.png"><img alt="_images/image84.png" src="_images/image84.png" style="width: 5.47852in; height: 3.35938in;" /></a>
-<p><strong>4. Notebook Single-User Logs :</strong></p>
-<p><strong>Filters</strong> : App = couture-notebook-user</p>
-<p><strong>Log Fields</strong> : loglevel, filename , line_no, resp_code, method,
-uri_path, hub_username, action, authscopes, kernel, filepath, data</p>
-<a class="reference internal image-reference" href="_images/image82.png"><img alt="_images/image82.png" src="_images/image82.png" style="width: 5.63786in; height: 3.51563in;" /></a>
-<p><strong>5. Service Mesh Access Logs :</strong></p>
-<p>In any of the above queries, change the container-name filter and log
-fields as below to view the corresponding envoy proxy logs for the
-pod.</p>
-<p><strong>Filters</strong> : App = istio-proxy</p>
-<p><strong>Log Fields</strong> : method, uriPath, protocol, response_code,
-istio-arg1, istio-arg2, data</p>
-<a class="reference internal image-reference" href="_images/image36.png"><img alt="_images/image36.png" src="_images/image36.png" style="width: 5.86394in; height: 3.37365in;" /></a>
-</div></blockquote>
-</section>
-<section id="users-access-and-security">
-<h2><strong>Users Access and Security</strong><a class="headerlink" href="#users-access-and-security" title="Permalink to this heading">#</a></h2>
-<p>DSCW platform comes with <strong>Role-Based Access Control,</strong> allowing one to
-configure varying levels of access across all Users within your
-Workspace (as of now only Admin can use this).</p>
-<p>Admin can browse through the list of users and their details about the
-users in the <strong>Security-&gt;Users</strong> tab.</p>
-<a class="reference internal image-reference" href="_images/image3.png"><img alt="_images/image3.png" src="_images/image3.png" style="width: 6.32669in; height: 1.43229in;" /></a>
-<p>Platform also allows him/her to view and edit the permissions for each
-role that are defined for the platform.​​ This can be done from the
-<strong>Security-&gt;Roles</strong> tab.</p>
-<p>There are six roles created for Workflow by default: Admin, Business
-Owner, Data Custodian, Data Engineer, Data Scientist, Workspace
-Custodian. Each of these roles come with a given set of permissions and
-can be edited by the Admin.</p>
-</section>
-<section id="image8">
-<h2><a class="reference internal" href="_images/image65.png"><img alt="image8" src="_images/image65.png" style="width: 6.27083in; height: 2.0182in;" /></a><a class="headerlink" href="#image8" title="Permalink to this heading">#</a></h2>
-</section>
-</section>
-
-        </article>
+        </a>
       </div>
-      <footer>
-        
-        <div class="related-pages">
-          <a class="next-page" href="faq.html">
+      <div class="header-right">
+        <!-- <div class="theme-toggle-container theme-toggle-header">
+          <button class="theme-toggle">
+            <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+            <svg class="theme-icon-when-auto">
+              <use href="#svg-sun-half"></use>
+            </svg>
+            <svg class="theme-icon-when-dark">
+              <use href="#svg-moon"></use>
+            </svg>
+            <svg class="theme-icon-when-light">
+              <use href="#svg-sun"></use>
+            </svg>
+          </button>
+        </div> -->
+        <label class="toc-overlay-icon toc-header-icon" for="__toc">
+          <div class="visually-hidden">Toggle table of contents sidebar</div>
+          <i class="icon"><svg>
+              <use href="#svg-toc"></use>
+            </svg></i>
+        </label>
+      </div>
+    </header>
+    <aside class="sidebar-drawer">
+      <div class="sidebar-container">
+
+        <div class="sidebar-sticky">
+          <form class="sidebar-search-container" method="get" action="search.html" role="search">
+            <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+            <input type="hidden" name="check_keywords" value="yes">
+            <input type="hidden" name="area" value="default">
+          </form>
+          <div id="searchbox"></div>
+          <div class="sidebar-scroll">
+            <div class="sidebar-tree">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="index.html">HOME</a></li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="architecture.html">ARCHITECTURE</a></li>
+              </ul>
+              <ul>
+                <li class="toctree-l1 has-children"><a class="reference internal" href="project.html">AI PLATFORM USER
+                    GUIDE</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1"
+                    role="switch" type="checkbox" /><label for="toctree-checkbox-1">
+                    <div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg>
+                        <use href="#svg-arrow-right"></use>
+                      </svg></i>
+                  </label>
+                  <ul>
+                    <li class="toctree-l2"><a class="reference internal"
+                        href="pipelines.html"><strong>Pipelines</strong></a></li>
+                    <li class="toctree-l2 has-children"><a class="reference internal"
+                        href="developer.html"><strong>Developer</strong></a><input class="toctree-checkbox"
+                        id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox" /><label
+                        for="toctree-checkbox-2">
+                        <div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg>
+                            <use href="#svg-arrow-right"></use>
+                          </svg></i>
+                      </label>
+                      <ul>
+                        <li class="toctree-l3"><a class="reference internal" href="dataLake.html"><strong>Data Lake
+                              Explorer</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="dbExplorer.html"><strong>Database
+                              Explorer</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="datasets.html"><strong>Datasets</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="model%26Exp.html"><strong>Models and
+                              Experiments</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="notebooks.html"><strong>Notebooks</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="autoEDA.html"><strong>Auto EDA
+                              (Exploratory Data Analysis)</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="apiCollection.html"><strong>API
+                              Collections (Auto API Builder)</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="projectServices.html"><strong>Project
+                              Services</strong></a></li>
+                      </ul>
+                    </li>
+                    <li class="toctree-l2 has-children"><a class="reference internal"
+                        href="monitor.html"><strong>Monitor</strong></a><input class="toctree-checkbox"
+                        id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox" /><label
+                        for="toctree-checkbox-3">
+                        <div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg>
+                            <use href="#svg-arrow-right"></use>
+                          </svg></i>
+                      </label>
+                      <ul>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="centralisedLogs.html"><strong>Centralised Logs</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="observability.html"><strong>Observability</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal" href="metricDash.html"><strong>Metrics
+                              Dashboard</strong></a></li>
+                        <li class="toctree-l3"><a class="reference internal"
+                            href="distributedTrace.html"><strong>Distributed Trace</strong></a></li>
+                      </ul>
+                    </li>
+                    <li class="toctree-l2"><a class="reference internal"
+                        href="configuration.html"><strong>Configurations</strong></a></li>
+                  </ul>
+                </li>
+              </ul>
+              <p class="caption" role="heading"><span class="caption-text">appendix and references</span></p>
+              <ul class="current">
+                <li class="toctree-l1"><a class="reference internal" href="pipeline.html">Pipelines Developer
+                    Reference</a></li>
+                <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Additional
+                    Admin Features</a></li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="faq.html">FAQs</a></li>
+              </ul>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </aside>
+    <div class="main">
+      <div class="content">
+        <div class="article-container">
+          <a href="#" class="back-to-top muted-link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+            </svg>
+            <span>Back to top</span>
+          </a>
+          <div class="content-icon-container">
+
+            <div class="theme-toggle-container theme-toggle-content">
+              <button class="theme-toggle">
+                <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+                <svg class="theme-icon-when-auto">
+                  <use href="#svg-sun-half"></use>
+                </svg>
+                <svg class="theme-icon-when-dark">
+                  <use href="#svg-moon"></use>
+                </svg>
+                <svg class="theme-icon-when-light">
+                  <use href="#svg-sun"></use>
+                </svg>
+              </button>
+            </div>
+            <label class="toc-overlay-icon toc-content-icon" for="__toc">
+              <div class="visually-hidden">Toggle table of contents sidebar</div>
+              <i class="icon"><svg>
+                  <use href="#svg-toc"></use>
+                </svg></i>
+            </label>
+          </div>
+          <article role="main">
+            <section id="additional-admin-features">
+              <span id="section-11"></span>
+              <h1>Additional Admin Features<a class="headerlink" href="#additional-admin-features"
+                  title="Permalink to this heading">#</a></h1>
+              <section id="spark-configuration-guide">
+                <h2><strong>Spark Configuration Guide</strong><a class="headerlink" href="#spark-configuration-guide"
+                    title="Permalink to this heading">#</a></h2>
+                <div class="line-block">
+                  <div class="line">[arguments]</div>
+                  <div class="line">master = &lt;Master of your Kubernetes Cluster&gt;</div>
+                  <div class="line">jars = &lt;Upload jars for Spark in Spark Dependency and select here&gt;</div>
+                  <div class="line">py-files = &lt;Upload pyfiles and egg files for PySpark in Spark
+                    Dependency and select here&gt;</div>
+                  <div class="line">deploy-mode = cluster // Don’t modify this for Kubernetes Based Spark
+                    cluster.</div>
+                  <div class="line">[configurations]</div>
+                  <div class="line">spark.scheduler.mode = FAIR</div>
+                  <div class="line">spark.kubernetes.container.image = &lt;spark_image_to_be_used&gt;</div>
+                  <div class="line">spark.kubernetes.namespace = &lt;namespace_for_running_job:
+                    default=default&gt;</div>
+                </div>
+                <p><strong>Add Input Data Source in S3 :</strong></p>
+                <ul class="simple">
+                  <li>
+                    <p>Upload data source in S3A data lake:</p>
+                  </li>
+                  <li>
+                    <p>Create a bucket in S3A (ex: DSCW-spark-k8s-test).</p>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Create a folder ‘inputs’ in that bucket or at some path inside your</dt>
+                      <dd>
+                        <p>bucket.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Upload data source file in above folder, with the key of format</dt>
+                      <dd>
+                        <p><em>BUCKET/…/…/inputs/&lt;data_source_name&gt;</em>
+                          <em>(ex : DSCW-spark-k8s-test/…/…/…/inputs/car_crashes.csv)</em>
+                        </p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>File with the S3A URI</dt>
+                      <dd>
+                        <p><em>s3a://&lt;bucket_name&gt;/…/…/…/inputs/&lt;data_source_name&gt;</em> should be
+                          created (ex:
+                          s3://DSCW-spark-k8s-test/…/…/…/inputs/car_crashes.csv)</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <blockquote>
+                  <div>
+                    <p><strong>Code Artifacts :</strong></p>
+                  </div>
+                </blockquote>
+                <ul class="simple">
+                  <li>
+                    <dl class="simple">
+                      <dt>Upload Application jar (ex: DSCW-eda.jar) from local to <em>Developer -&gt;</em></dt>
+                      <dd>
+                        <p><em>Code Artifact</em> page in Workbench.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>List the jar name in argument ‘code_artifact’ when calling the</dt>
+                      <dd>
+                        <p>Kubernetes Spark Operator (implicitly set in template for EDA).</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <blockquote>
+                  <div>
+                    <p><strong>Example Test - Code Artifacts</strong></p>
+                  </div>
+                </blockquote>
+                <ul class="simple">
+                  <li>
+                    <dl class="simple">
+                      <dt>Application jar (application_jar/spark_k8_dep_test.jar): Upload</dt>
+                      <dd>
+                        <p>spark_k8_dep_test.jar in <em>Developer -&gt; Code Artifact</em> page in
+                          Workbench.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Dependency jar (dependency_jar/spark-nlp_2.12-3.3.4.jar): Upload</dt>
+                      <dd>
+                        <p>spark-nlp_2.12-3.3.4.jar in <em>Cluster Configurations -&gt; Spark
+                            Dependency</em> page.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Select the above dependency jar in jars of <em>Cluster Configurations -&gt;</em></dt>
+                      <dd>
+                        <p><em>Spark configuration</em> page</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Example Pipeline (example_dag/spark_k8_test_dag.py):Create pipeline</dt>
+                      <dd>
+                        <p>in <em>Pipeline -&gt; Manage and Create Pipelines</em> with the example
+                          pipeline code shared below :</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <blockquote>
+                  <div>
+                    <p>code_artifact = ‘spark_k8_dep_test.jar’</p>
+                    <p>spark_conf = “spark/spark-conf”</p>
+                    <p>data_uri =
+                      ‘s3a://aws-dsofminerva-stg-s1e1sg1c1-swb-ds-001/Datastores/ds-DSCW-01/Experiments-Default/inputs/car_crashes.csv’
+                    </p>
+                  </div>
+                </blockquote>
+                <ul class="simple">
+                  <li>
+                    <dl class="simple">
+                      <dt>Update the input file path in the pipeline file (‘input_data_uri’</dt>
+                      <dd>
+                        <p>variable - line:21) - also create bucket and input data file as
+                          mentioned above.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Update the output folder path in the example pipeline file</dt>
+                      <dd>
+                        <p>(output_data_uri variable - line:23) - without trailing slash</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Trigger the pipeline and output partitioned file should be created in</dt>
+                      <dd>
+                        <p>the S3 datalake created by user (path:
+                          s3a://&lt;bucket_name/&lt;output_folder_path&gt;/car_crashes/…
+                          preliminary_summary/part..csv)</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+              </section>
+              <section id="pyspark-configuration-guide">
+                <h2><strong>PySpark Configuration Guide</strong><a class="headerlink"
+                    href="#pyspark-configuration-guide" title="Permalink to this heading">#</a></h2>
+                <p><strong>Add Input Data Source in S3 :</strong></p>
+                <ul class="simple">
+                  <li>
+                    <p>Upload data source in S3A data lake:</p>
+                  </li>
+                  <li>
+                    <p>Create a bucket in S3A (ex: DSCW-pyspark-k8s-test).</p>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Create a folder ‘inputs’ in that bucket or at some path inside your</dt>
+                      <dd>
+                        <p>bucket.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Upload data source file in above folder, with the key of format</dt>
+                      <dd>
+                        <p><em>BUCKET/…/…/inputs/&lt;data_source_name&gt;</em>
+                          <em>(ex : DSCW-pyspark-k8s-test/…/…/…/inputs/car_crashes.csv)</em>
+                        </p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>File with the S3A URI</dt>
+                      <dd>
+                        <p><em>s3a://&lt;bucket_name&gt;/…/…/…/inputs/&lt;data_source_name&gt;</em> should be
+                          created (ex:
+                          s3://DSCW-pyspark-k8s-test/…/…/…/inputs/car_crashes.csv)</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <p><strong>Code Artifacts</strong></p>
+                <ul class="simple">
+                  <li>
+                    <dl class="simple">
+                      <dt>Upload the following two application files (for example: main.py</dt>
+                      <dd>
+                        <p>(code_artifact), pyspark_example_test-0.0.1-py3.9.egg
+                          (pyspark_dependencies)) from local to <em>Developer -&gt; Code Artifact</em>
+                          page in Workbench.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>List the ‘code_artifact’ name in argument ‘code_artifact’ and the</dt>
+                      <dd>
+                        <p>‘pyspark_dependencies’ name in argument ‘pyspark_dependencies’
+                          when calling the Kubernetes Pyspark Operator.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <p><strong>Example Test - Code Artifacts</strong></p>
+                <ul class="simple">
+                  <li>
+                    <dl class="simple">
+                      <dt>Update all spark configurations in ‘Cluster Configurations’ for</dt>
+                      <dd>
+                        <p>default group from above section <strong>(Can be set only by Admins)</strong></p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Upload the following Application files in <em>Developer -&gt; Code</em></dt>
+                      <dd>
+                        <p><em>Artifacts</em> page in Workbench (mentioned above).</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>main.py (code artifact)</p>
+                  </li>
+                  <li>
+                    <p>Pyspark_example_test-0.0.1-py3.9.egg (pyspark dependencies)</p>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>These two files are listed in the example pipeline (code artifact</dt>
+                      <dd>
+                        <p>variable, pyspark_dependencies variable)</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Create pipeline in <em>Pipeline -&gt; Manage and Create Pipelines</em> with the</dt>
+                      <dd>
+                        <p>example pipeline code shared below :</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <blockquote>
+                  <div>
+                    <p>code_artifact = ‘main.py’</p>
+                    <p>spark_conf = “spark/spark-conf”</p>
+                    <p>pyspark_dependencies = [“pyspark_example_test-0.0.1-py3.9.egg”]</p>
+                    <p>input_data_uri =
+                      ‘s3a://aws-dsofminerva-stg-s1e1sg1c1-swb-ds-001/Datastores/ds-DSCW-01/Experiments-Default/inputs/Tips.csv’
+                    </p>
+                    <p>output_data_uri =
+                      ‘s3a://aws-dsofminerva-stg-s1e1sg1c1-swb-ds-001/Datastores/ds-DSCW-01/Experiments-Default/outputs’
+                    </p>
+                  </div>
+                </blockquote>
+                <ul class="simple">
+                  <li>
+                    <dl class="simple">
+                      <dt>Update the input file path in the example pipeline file</dt>
+                      <dd>
+                        <p>(input_data_uri variable - line 18), also create bucket and input
+                          data file as prerequisites.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Update the output folder path in the example pipeline file (</dt>
+                      <dd>
+                        <p>output_data_uri variable - line 20), without trailing slash.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Trigger the pipeline and output partitioned file should be created in</dt>
+                      <dd>
+                        <p>the S3 datalake, created by user (path :
+                          &lt;bucket_name&gt;/&lt;output_folder_path&gt;/part…csv)</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+              </section>
+              <section id="notebook-admin-control-panel">
+                <span id="section-14"></span><span id="section-13"></span>
+                <h2><strong>Notebook Admin Control Panel</strong><a class="headerlink"
+                    href="#notebook-admin-control-panel" title="Permalink to this heading">#</a></h2>
+                <ul class="simple">
+                  <li>
+                    <p>The Control Panel maintains the server states</p>
+                  </li>
+                  <li>
+                    <p>USER can Start/Stop only their servers (kernels)</p>
+                  </li>
+                </ul>
+                <a class="reference internal image-reference" href="_images/image10.gif"><img alt="_images/image10.gif"
+                    src="_images/image10.gif" style="width: 2.72396in; height: 4in;" /></a>
+                <ul class="simple">
+                  <li>
+                    <p>ADMIN can Start/Stop all the servers, which can be created by any
+                      user.</p>
+                  </li>
+                </ul>
+                <a class="reference internal image-reference" href="_images/image60.png"><img alt="_images/image60.png"
+                    src="_images/image60.png" style="width: 6.5in; height: 1.61111in;" /></a>
+              </section>
+              <section id="steps-for-viewing-logs">
+                <h2><strong>Steps for Viewing Logs</strong><a class="headerlink" href="#steps-for-viewing-logs"
+                    title="Permalink to this heading">#</a></h2>
+                <p>Steps involved in viewing the logs are as follows :</p>
+                <ol class="arabic simple">
+                  <li>
+                    <p><strong>Choose an app name</strong> : DSCW-logging contains the following app-name
+                      :</p>
+                    <ol class="loweralpha simple">
+                      <li>
+                        <dl class="simple">
+                          <dt><strong>Istio-proxy</strong><span class="classifier">contains the istio sidecar logs for
+                              the entire</span></dt>
+                          <dd>
+                            <p>mesh</p>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <dl class="simple">
+                          <dt><strong>Vault-agent</strong><span class="classifier">contains the vault sidecar logs for
+                              the entire</span></dt>
+                          <dd>
+                            <p>mesh</p>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p><strong>Workflow-webserver</strong> : workbench webserver logs</p>
+                      </li>
+                      <li>
+                        <p><strong>Workflow-worker</strong> : Workbench Worker logs (Task logs)</p>
+                      </li>
+                      <li>
+                        <p><strong>Workflow-scheduler</strong> : Workbench Scheduler Logs</p>
+                      </li>
+                      <li>
+                        <p><strong>Workbench-mb</strong> : Workbench RabbitMQ</p>
+                      </li>
+                      <li>
+                        <p><strong>Workbench-db</strong> : Workbench MySQL</p>
+                      </li>
+                      <li>
+                        <p><strong>Nb-hub</strong> : Notebook-Server Hub</p>
+                      </li>
+                      <li>
+                        <p><strong>Nb-proxy</strong> : Notebook-Server Proxy</p>
+                      </li>
+                      <li>
+                        <p><strong>Nb-user</strong> : Notebook-Server Single User Pod</p>
+                      </li>
+                      <li>
+                        <dl class="simple">
+                          <dt><strong>Pvc-logger</strong><span class="classifier">Shows the usage of EFS PVCs, currently
+                              in</span></dt>
+                          <dd>
+                            <p>development</p>
+                          </dd>
+                        </dl>
+                      </li>
+                      <li>
+                        <p><strong>Dump</strong> : contains the logs for all other pods inside the mesh</p>
+                      </li>
+                    </ol>
+                  </li>
+                  <li>
+                    <p><strong>Set the time range</strong> : In the upper right corner, you can see the
+                      selector for the time-range for which the logs will be shown.</p>
+                  </li>
+                  <li>
+                    <p><strong>Identify the log fields associated with the application :</strong> Each
+                      application has a set of valid fields that are populated using log
+                      processing pipelines inside fluent-bit. Find these fields and display
+                      them on the logs UI.</p>
+                  </li>
+                  <li>
+                    <p><strong>Save search :</strong> Once you find the logs you were looking for, you
+                      can save this search by clicking on the save button in the top right
+                      corner. As an example, here’s how we would search the logs of
+                      workflow-scheduler :</p>
+                  </li>
+                </ol>
+                <ol class="arabic simple">
+                  <li>
+                    <p>Choose the app name</p>
+                  </li>
+                  <li>
+                    <p>Set the appropriate time range</p>
+                  </li>
+                  <li>
+                    <p>Add the logfields</p>
+                  </li>
+                  <li>
+                    <p>Save the search for future use</p>
+                  </li>
+                  <li>
+                    <p>For logs of any other applications, follow the below steps :</p>
+                  </li>
+                </ol>
+                <ol class="arabic simple">
+                  <li>
+                    <p>Set app to “dump”</p>
+                  </li>
+                  <li>
+                    <p>Set <strong>kubernetes.namespace_name</strong></p>
+                  </li>
+                  <li>
+                    <p>Set <strong>kubernetes.pod_name</strong></p>
+                  </li>
+                  <li>
+                    <p>Set <strong>kubernetes.container_name</strong></p>
+                  </li>
+                </ol>
+                <p>Alternatively, you can also search for your container by using any other
+                  kubernetes metadata such as labels or annotations :</p>
+                <ul class="simple">
+                  <li>
+                    <p>Search for <strong>kubernetes.labels</strong> in the search field to see the
+                      available labels that you can query.</p>
+                  </li>
+                  <li>
+                    <p>Search for <strong>kubernetes.annotations</strong> in the search field to see the
+                      available labels that you can query.</p>
+                  </li>
+                </ul>
+              </section>
+              <section id="application-specific-log-fields">
+                <h2><strong>Application Specific Log Fields</strong><a class="headerlink"
+                    href="#application-specific-log-fields" title="Permalink to this heading">#</a></h2>
+                <ol class="arabic simple">
+                  <li>
+                    <p><strong>Pipeline Logs :</strong></p>
+                  </li>
+                </ol>
+                <blockquote>
+                  <div>
+                    <p><strong>Filters</strong> : App = workflow-scheduler</p>
+                    <p><strong>Log Fields</strong> : filename , line_no, loglevel, dag_id, task_id,
+                      run_id, state, try_number</p>
+                    <p>(Add a filter for the pipeline’s run_id and find the logs for your
+                      pipeline execution.)</p>
+                    <a class="reference internal image-reference" href="_images/image80.png"><img
+                        alt="_images/image80.png" src="_images/image80.png"
+                        style="width: 5.31901in; height: 2.97396in;" /></a>
+                    <p><strong>2. Pipeline-Tasks Logs:</strong></p>
+                    <p><strong>Filters</strong> : App = workflow-worker</p>
+                    <p><strong>Log Fields</strong> : filename , line_no, loglevel, data, offset, dag_id,
+                      task_id, execution_id,</p>
+                    <p>try_number, log_id</p>
+                  </div>
+                </blockquote>
+                <p>View the logs of any Pipeline :</p>
+                <ul class="simple">
+                  <li>
+                    <p>Search for ‘id’ in the search box on the left.</p>
+                  </li>
+                  <li>
+                    <p>This will show the fields `dag_id` and `task_id`.</p>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Click on dag_id and select the dag_id for your Pipeline by clicking</dt>
+                      <dd>
+                        <p>on the small “+” button next to the percentage.</p>
+                      </dd>
+                    </dl>
+                  </li>
+                  <li>
+                    <p>Follow the same process for task_id to separate the logs by task_id.</p>
+                  </li>
+                  <li>
+                    <dl class="simple">
+                      <dt>Or you can just view the logs for all the tasks together, and add</dt>
+                      <dd>
+                        <p>task_id to the visible list of fields and view all those logs
+                          together</p>
+                      </dd>
+                    </dl>
+                  </li>
+                </ul>
+                <blockquote>
+                  <div><a class="reference internal image-reference" href="_images/image32.gif"><img
+                        alt="_images/image32.gif" src="_images/image32.gif"
+                        style="width: 5.76614in; height: 2.67188in;" /></a>
+                  </div>
+                </blockquote>
+                <p><strong>3. Notebook Server Hub Logs :</strong></p>
+                <blockquote>
+                  <div>
+                    <p><strong>Filters</strong> : App = couture-notebook-hub</p>
+                    <p><strong>Log Fields</strong> : loglevel, hub-arg1, data</p>
+                    <a class="reference internal image-reference" href="_images/image84.png"><img
+                        alt="_images/image84.png" src="_images/image84.png"
+                        style="width: 5.47852in; height: 3.35938in;" /></a>
+                    <p><strong>4. Notebook Single-User Logs :</strong></p>
+                    <p><strong>Filters</strong> : App = couture-notebook-user</p>
+                    <p><strong>Log Fields</strong> : loglevel, filename , line_no, resp_code, method,
+                      uri_path, hub_username, action, authscopes, kernel, filepath, data</p>
+                    <a class="reference internal image-reference" href="_images/image82.png"><img
+                        alt="_images/image82.png" src="_images/image82.png"
+                        style="width: 5.63786in; height: 3.51563in;" /></a>
+                    <p><strong>5. Service Mesh Access Logs :</strong></p>
+                    <p>In any of the above queries, change the container-name filter and log
+                      fields as below to view the corresponding envoy proxy logs for the
+                      pod.</p>
+                    <p><strong>Filters</strong> : App = istio-proxy</p>
+                    <p><strong>Log Fields</strong> : method, uriPath, protocol, response_code,
+                      istio-arg1, istio-arg2, data</p>
+                    <a class="reference internal image-reference" href="_images/image36.png"><img
+                        alt="_images/image36.png" src="_images/image36.png"
+                        style="width: 5.86394in; height: 3.37365in;" /></a>
+                  </div>
+                </blockquote>
+              </section>
+              <section id="users-access-and-security">
+                <h2><strong>Users Access and Security</strong><a class="headerlink" href="#users-access-and-security"
+                    title="Permalink to this heading">#</a></h2>
+                <p>DSCW platform comes with <strong>Role-Based Access Control,</strong> allowing one to
+                  configure varying levels of access across all Users within your
+                  Workspace (as of now only Admin can use this).</p>
+                <p>Admin can browse through the list of users and their details about the
+                  users in the <strong>Security-&gt;Users</strong> tab.</p>
+                <a class="reference internal image-reference" href="_images/image3.png"><img alt="_images/image3.png"
+                    src="_images/image3.png" style="width: 6.32669in; height: 1.43229in;" /></a>
+                <p>Platform also allows him/her to view and edit the permissions for each
+                  role that are defined for the platform.​​ This can be done from the
+                  <strong>Security-&gt;Roles</strong> tab.
+                </p>
+                <p>There are six roles created for Workflow by default: Admin, Business
+                  Owner, Data Custodian, Data Engineer, Data Scientist, Workspace
+                  Custodian. Each of these roles come with a given set of permissions and
+                  can be edited by the Admin.</p>
+              </section>
+              <section id="image8">
+                <h2><a class="reference internal" href="_images/image65.png"><img alt="image8" src="_images/image65.png"
+                      style="width: 6.27083in; height: 2.0182in;" /></a><a class="headerlink" href="#image8"
+                    title="Permalink to this heading">#</a></h2>
+              </section>
+            </section>
+
+          </article>
+        </div>
+        <footer>
+
+          <div class="related-pages">
+            <a class="next-page" href="faq.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
                 <div class="title">FAQs</div>
               </div>
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon">
+                <use href="#svg-arrow-right"></use>
+              </svg>
             </a>
-          <a class="prev-page" href="pipeline.html">
-              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            <a class="prev-page" href="pipeline.html">
+              <svg class="furo-related-icon">
+                <use href="#svg-arrow-right"></use>
+              </svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
-                
+
                 <div class="title">Pipelines Developer Reference</div>
-                
+
               </div>
             </a>
-        </div>
-        <div class="bottom-of-page">
-          <div class="left-details">
-            <div class="copyright">
+          </div>
+          <div class="bottom-of-page">
+            <div class="left-details">
+              <div class="copyright">
                 Copyright &#169; 2023
-            </div>
-            
-            
-          </div>
-          <div class="right-details">
-            
-          </div>
-        </div>
-        
-      </footer>
-    </div>
-    <aside class="toc-drawer">
-      
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Additional Admin Features</a><ul>
-<li><a class="reference internal" href="#spark-configuration-guide"><strong>Spark Configuration Guide</strong></a></li>
-<li><a class="reference internal" href="#pyspark-configuration-guide"><strong>PySpark Configuration Guide</strong></a></li>
-<li><a class="reference internal" href="#notebook-admin-control-panel"><strong>Notebook Admin Control Panel</strong></a></li>
-<li><a class="reference internal" href="#steps-for-viewing-logs"><strong>Steps for Viewing Logs</strong></a></li>
-<li><a class="reference internal" href="#application-specific-log-fields"><strong>Application Specific Log Fields</strong></a></li>
-<li><a class="reference internal" href="#users-access-and-security"><strong>Users Access and Security</strong></a></li>
-<li><a class="reference internal" href="#image8"></a></li>
-</ul>
-</li>
-</ul>
+              </div>
 
+
+            </div>
+            <div class="right-details">
+
+            </div>
+          </div>
+
+        </footer>
+      </div>
+      <aside class="toc-drawer">
+
+
+        <div class="toc-sticky toc-scroll">
+          <div class="toc-title-container">
+            <span class="toc-title">
+              On this page
+            </span>
+          </div>
+          <div class="toc-tree-container">
+            <div class="toc-tree">
+              <ul>
+                <li><a class="reference internal" href="#">Additional Admin Features</a>
+                  <ul>
+                    <li><a class="reference internal" href="#spark-configuration-guide"><strong>Spark Configuration
+                          Guide</strong></a></li>
+                    <li><a class="reference internal" href="#pyspark-configuration-guide"><strong>PySpark Configuration
+                          Guide</strong></a></li>
+                    <li><a class="reference internal" href="#notebook-admin-control-panel"><strong>Notebook Admin
+                          Control Panel</strong></a></li>
+                    <li><a class="reference internal" href="#steps-for-viewing-logs"><strong>Steps for Viewing
+                          Logs</strong></a></li>
+                    <li><a class="reference internal" href="#application-specific-log-fields"><strong>Application
+                          Specific Log Fields</strong></a></li>
+                    <li><a class="reference internal" href="#users-access-and-security"><strong>Users Access and
+                          Security</strong></a></li>
+                    <li><a class="reference internal" href="#image8"></a></li>
+                  </ul>
+                </li>
+              </ul>
+
+            </div>
           </div>
         </div>
-      </div>
-      
-      
-    </aside>
+
+
+      </aside>
+    </div>
   </div>
-</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/scripts/furo.js"></script>
-    </body>
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/sphinx_highlight.js"></script>
+  <script src="_static/scripts/furo.js"></script>
+</body>
+
 </html>
